@@ -1,0 +1,30 @@
+PODS:
+  - Charts (3.5.0):
+    - Charts/Core (= 3.5.0)
+  - Charts/Core (3.5.0)
+  - Macaw (0.9.6):
+    - SWXMLHash
+  - SWXMLHash (5.0.1)
+  - TinyConstraints (4.0.1)
+
+DEPENDENCIES:
+  - Charts
+  - Macaw (= 0.9.6)
+  - TinyConstraints
+
+SPEC REPOS:
+  trunk:
+    - Charts
+    - Macaw
+    - SWXMLHash
+    - TinyConstraints
+
+SPEC CHECKSUMS:
+  Charts: 40a08591df1f8ad5c223ddedfb1a06da92f24f7c
+  Macaw: 8306d775625ba003beee4186b9533fd7cf284024
+  SWXMLHash: 9cc0c2e4807926c74377724aa8722ee5707a0485
+  TinyConstraints: 8dd91295e56797648c7bc335dd20e1d91ec4c192
+
+PODFILE CHECKSUM: 192a9257df759b3c9696c8101ac9eedb154dd087
+
+COCOAPODS: 1.9.1
