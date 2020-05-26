@@ -12,25 +12,25 @@ class DrinkVC: UIViewController {
         
    // let weekStackView = UIStackView()
     let weekView = UIView()
+    let dateView = UIView()
+    var activityView = UIView()
     
     var itemViews: [UIView] = []
 
     
 
-    let dateStackView = UIStackView()
+  //  let dateStackView = UIStackView()
     var daysView: [DWDayView] = []
     let activityStackView = UIStackView()
-    var drinkStackView = UIStackView()
-    var activityView: DWActivityView!
-  //  var weekView = UIView()
+   // var activityView: DWActivityView!
     var statsStackView = UIStackView()
     var myContainerView: UIView!
     
     let pageVC = StatsPageViewController()
 
 
-    var todayLabel = DWBoldLabel(textAlignment: .left, fontSize: 17)
-    var dateLabel = DWTitleLabel(textAlignment: .center, fontSize: 17)
+//    var todayLabel = DWBoldLabel(textAlignment: .left, fontSize: 17)
+//    var dateLabel = DWTitleLabel(textAlignment: .center, fontSize: 17)
     var activityLevelLabel = DWBoldLabel(textAlignment: .left, fontSize: 15)
     var swipeUpLabel = DWTitleLabel(textAlignment: .center, fontSize: 15)
     var swipeDownLabel = DWTitleLabel(textAlignment: .center, fontSize: 15)
@@ -57,8 +57,9 @@ class DrinkVC: UIViewController {
         view.backgroundColor = .black
         
         configureNavBar()
-        configureUIElements()
         layoutUI()
+        configureUIElements()
+
       //  configureWeekView()
 //        configureActivityView()
 //        configureDateLabel()
@@ -67,7 +68,6 @@ class DrinkVC: UIViewController {
     }
     
 
-    
     func configureNavBar() {
         self.navigationController?.navigationBar.tintColor = UIColor(cgColor: DWColors.greenColor)
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "person.crop.circle"), style: .done, target: self, action: #selector(profileButtonTapped))
@@ -82,21 +82,22 @@ class DrinkVC: UIViewController {
         present(navController, animated: true)
     }
     
+    
     func configureUIElements() {
         
         let weekActivityVC = WeekActivityVC()
         self.add(childVC: weekActivityVC, to: self.weekView)
-//        let todayDateVC = TodayDateVC()
-//        self.add(childVC: todayDateVC, to: self.dateStackView)
-//        let activityVC = ActivityVC()
-//        self.add(childVC: activityVC, to: self.activityView)
+        let dateVC = DateVC()
+        self.add(childVC: dateVC, to: self.dateView)
+        let activityVC = ActivityVC()
+        self.add(childVC: activityVC, to: self.activityView)
 
     }
     
     
     func layoutUI() {
         
-        itemViews = [weekView]
+        itemViews = [weekView, dateView]
         
         let padding: CGFloat = 20
         for itemView in itemViews {
@@ -107,15 +108,52 @@ class DrinkVC: UIViewController {
                 itemView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
                 itemView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
             ])
-                }
+        }
                 
-              //  viewSize = (self.view.frame.height-100)/4
-              // viewSize = 150
-                
-            NSLayoutConstraint.activate([
-                weekView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: padding),
-                weekView.heightAnchor.constraint(equalToConstant: 50),
-            ])
+        view.addSubview(activityView)
+        activityView.translatesAutoresizingMaskIntoConstraints = false
+
+        let space1 = UILayoutGuide()
+        self.view.addLayoutGuide(space1)
+         
+        let space2 = UILayoutGuide()
+        self.view.addLayoutGuide(space2)
+        
+        NSLayoutConstraint.activate([
+            weekView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: padding),
+            weekView.heightAnchor.constraint(equalToConstant: 50),
+            
+            dateView.topAnchor.constraint(equalTo: weekView.bottomAnchor, constant: padding),
+            
+            activityView.widthAnchor.constraint(equalToConstant: self.view.frame.size.width/1.5),
+            activityView.heightAnchor.constraint(equalToConstant: self.view.frame.size.width/1.5),
+            activityView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            activityView.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: (navigationController?.navigationBar.frame.size.height)!)
+        ])
+        
+        
+        space1.heightAnchor.constraint(equalTo: space2.heightAnchor).isActive = true
+        weekView.bottomAnchor.constraint(equalTo: space1.topAnchor).isActive = true
+        dateView.topAnchor.constraint(equalTo: space1.bottomAnchor).isActive = true
+        dateView.bottomAnchor.constraint(equalTo: space2.topAnchor).isActive = true
+        activityView.topAnchor.constraint(equalTo: space2.bottomAnchor, constant: 0).isActive = true
+
+        configureSwipeUpMessage()
+    }
+    
+    
+    func configureSwipeUpMessage() {
+        view.addSubview(swipeUpLabel)
+        swipeUpLabel.text = "Swipe up to see your stats."
+
+        upSwipe = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipeUp))
+        upSwipe.direction = .up
+        
+        view.addGestureRecognizer(upSwipe)
+        NSLayoutConstraint.activate([
+            swipeUpLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            swipeUpLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -50)
+        ])
     }
     
     
@@ -126,7 +164,7 @@ class DrinkVC: UIViewController {
     
     
     func add(childVC: UIViewController, to containerView: UIView) {
-        addChild(childVC)
+        self.addChild(childVC)
         containerView.addSubview(childVC.view)
         childVC.view.frame = containerView.bounds
         childVC.didMove(toParent: self)
@@ -158,47 +196,47 @@ class DrinkVC: UIViewController {
     
     
     
-    func configureActivityView() {
-        let width: CGFloat = self.view.frame.size.width/1.5
-        let height: CGFloat = width
-        
-        percentageGoal = (drunkVolume*100)/drinkGoal
-        self.radius = Double(width / 2.0)
-        
-        activityView = DWActivityView(x: self.view.frame.size.width/2 - width/2, y: self.view.frame.size.height/2 - height/2, width: width, height: height, percentageCompleted: percentageGoal)
-        
-        self.view.addSubview(activityView)
-    }
+//    func configureActivityView() {
+//        let width: CGFloat = self.view.frame.size.width/1.5
+//        let height: CGFloat = width
+//
+//        percentageGoal = (drunkVolume*100)/drinkGoal
+//        self.radius = Double(width / 2.0)
+//
+//        activityView = DWActivityView(x: self.view.frame.size.width/2 - width/2, y: self.view.frame.size.height/2 - height/2, width: width, height: height, percentageCompleted: percentageGoal)
+//
+//        self.view.addSubview(activityView)
+//    }
     
     
-    func configureDateLabel() {
-        view.addSubview(dateStackView)
-        
-        dateStackView.axis = .horizontal
-        dateStackView.distribution = .equalSpacing
-        dateStackView.addArrangedSubview(todayLabel)
-        dateStackView.addArrangedSubview(dateLabel)
-        dateStackView.translatesAutoresizingMaskIntoConstraints = false
-        
-        todayLabel.text = "Today, "
-        dateLabel.text = Date().convertToDayMonthYearFormat()
-                
-        NSLayoutConstraint.activate([
-            dateStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-        ])
-        
-        let space1 = UILayoutGuide()
-        self.view.addLayoutGuide(space1)
-         
-        let space2 = UILayoutGuide()
-        self.view.addLayoutGuide(space2)
-        
-        space1.heightAnchor.constraint(equalTo: space2.heightAnchor).isActive = true
-        weekView.bottomAnchor.constraint(equalTo: space1.topAnchor).isActive = true
-        dateStackView.topAnchor.constraint(equalTo: space1.bottomAnchor).isActive = true
-        dateStackView.bottomAnchor.constraint(equalTo: space2.topAnchor).isActive = true
-        activityView.topAnchor.constraint(equalTo: space2.bottomAnchor, constant: 15).isActive = true
-    }
+//    func configureDateLabel() {
+//        view.addSubview(dateStackView)
+//
+//        dateStackView.axis = .horizontal
+//        dateStackView.distribution = .equalSpacing
+//        dateStackView.addArrangedSubview(todayLabel)
+//        dateStackView.addArrangedSubview(dateLabel)
+//        dateStackView.translatesAutoresizingMaskIntoConstraints = false
+//
+//        todayLabel.text = "Today, "
+//        dateLabel.text = Date().convertToDayMonthYearFormat()
+//
+//        NSLayoutConstraint.activate([
+//            dateStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+//        ])
+//
+//        let space1 = UILayoutGuide()
+//        self.view.addLayoutGuide(space1)
+//
+//        let space2 = UILayoutGuide()
+//        self.view.addLayoutGuide(space2)
+//
+//        space1.heightAnchor.constraint(equalTo: space2.heightAnchor).isActive = true
+//        weekView.bottomAnchor.constraint(equalTo: space1.topAnchor).isActive = true
+//        dateStackView.topAnchor.constraint(equalTo: space1.bottomAnchor).isActive = true
+//        dateStackView.bottomAnchor.constraint(equalTo: space2.topAnchor).isActive = true
+//        activityView.topAnchor.constraint(equalTo: space2.bottomAnchor, constant: 15).isActive = true
+//    }
     
     
     private func updateWeekView() {
@@ -214,10 +252,10 @@ class DrinkVC: UIViewController {
             percentageGoal = 1.0
             goalCompleted = true
             self.actionButton.disableActionButton()
-            self.activityView.animatePusaltingCircle()
+        //    self.activityView.animatePusaltingCircle()
         }
-        activityView.animateActivityLabel(percentage: percentageGoal)
-        activityView.updateActivityCircle(percentage: percentageGoal)
+      //  activityView.animateActivityLabel(percentage: percentageGoal)
+     //   activityView.updateActivityCircle(percentage: percentageGoal)
         updateWeekView()
     }
     
@@ -246,8 +284,8 @@ class DrinkVC: UIViewController {
             if self.percentageGoal >= 1.0 {
                 self.percentageGoal = 1.0
                 self.animateCircles()
-                self.activityView.animatePusaltingCircle()
-                self.activityView.configureCongratLabel()
+          //      self.activityView.animatePusaltingCircle()
+           //     self.activityView.configureCongratLabel()
             } else {
                 button.toggleMenu()
             }
@@ -255,19 +293,6 @@ class DrinkVC: UIViewController {
     }
     
     
-    func configureSwipeUpMessage() {
-        view.addSubview(swipeUpLabel)
-        swipeUpLabel.text = "Swipe up to see your stats."
-
-        upSwipe = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipeUp))
-        upSwipe.direction = .up
-        
-        view.addGestureRecognizer(upSwipe)
-        NSLayoutConstraint.activate([
-            swipeUpLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            swipeUpLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -50)
-        ])
-    }
     
     
     func configureStatsVC() {

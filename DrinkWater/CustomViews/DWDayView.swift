@@ -19,7 +19,6 @@ class DWDayView: UIView {
     
     var percentageCompleted = 0.0
     var todayInInt = Date().getWeekDay()
-    var dayInInt = 0
 
     
     var width: CGFloat = 0.0
@@ -62,7 +61,7 @@ class DWDayView: UIView {
 //    }
     
     
-    func setWeekDays(day: Int) {
+    func drawWeekDays(day: Int) {
         textLayer.string = day.convertToDayLetter()
             
         if self.todayInInt == day {

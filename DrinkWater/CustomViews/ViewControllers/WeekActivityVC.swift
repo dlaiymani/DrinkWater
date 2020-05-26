@@ -69,10 +69,8 @@ class WeekActivityVC: UIViewController {
     
     func configureDayViews() {
         for day in 0...6 {
-            dayViews[day].setWeekDays(day: day)
-            print(dayViews[day].frame.size.height)
+            dayViews[day].drawWeekDays(day: day)
         }
-        
     }
 }
 
