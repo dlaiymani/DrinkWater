@@ -10,13 +10,19 @@ import UIKit
 
 class DrinkVC: UIViewController {
         
-    let weekStackView = UIStackView()
+   // let weekStackView = UIStackView()
+    let weekView = UIView()
+    
+    var itemViews: [UIView] = []
+
+    
+
     let dateStackView = UIStackView()
     var daysView: [DWDayView] = []
     let activityStackView = UIStackView()
     var drinkStackView = UIStackView()
     var activityView: DWActivityView!
-    var weekView = UIView()
+  //  var weekView = UIView()
     var statsStackView = UIStackView()
     var myContainerView: UIView!
     
@@ -51,11 +57,13 @@ class DrinkVC: UIViewController {
         view.backgroundColor = .black
         
         configureNavBar()
-        configureWeekView()
-        configureActivityView()
-        configureDateLabel()
-        setupButtons()
-        configureSwipeUpMessage()
+        configureUIElements()
+        layoutUI()
+      //  configureWeekView()
+//        configureActivityView()
+//        configureDateLabel()
+//        setupButtons()
+//        configureSwipeUpMessage()
     }
     
 
@@ -77,7 +85,7 @@ class DrinkVC: UIViewController {
     func configureUIElements() {
         
         let weekActivityVC = WeekActivityVC()
-        self.add(childVC: weekActivityVC, to: self.weekStackView)
+        self.add(childVC: weekActivityVC, to: self.weekView)
 //        let todayDateVC = TodayDateVC()
 //        self.add(childVC: todayDateVC, to: self.dateStackView)
 //        let activityVC = ActivityVC()
@@ -88,6 +96,26 @@ class DrinkVC: UIViewController {
     
     func layoutUI() {
         
+        itemViews = [weekView]
+        
+        let padding: CGFloat = 20
+        for itemView in itemViews {
+            view.addSubview(itemView)
+            itemView.translatesAutoresizingMaskIntoConstraints = false
+                    
+            NSLayoutConstraint.activate([
+                itemView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
+                itemView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
+            ])
+                }
+                
+              //  viewSize = (self.view.frame.height-100)/4
+              // viewSize = 150
+                
+            NSLayoutConstraint.activate([
+                weekView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: padding),
+                weekView.heightAnchor.constraint(equalToConstant: 50),
+            ])
     }
     
     
@@ -104,29 +132,29 @@ class DrinkVC: UIViewController {
         childVC.didMove(toParent: self)
     }
     
-    func configureWeekView() {
-        weekView = UIView(frame: .zero)
-        self.view.addSubview(weekView)
-        weekView.translatesAutoresizingMaskIntoConstraints = false
-        
-        let width = self.view.frame.size.width - 160
-        let dayWidth: Int = Int(width/7)
-        self.dayViewHeight = CGFloat(dayWidth)
-                
-        for day in 0...6 {
-            let x = CGFloat((dayWidth+20)*day)+20
-            let y = CGFloat(0)
-            daysView.append(DWDayView(x: x, y: y, width: CGFloat(dayWidth), height: CGFloat(self.dayViewHeight), percentageCompleted: percentageGoal, dayInInt: day)) 
-            weekView.addSubview(daysView[day])
-        }
-        
-        NSLayoutConstraint.activate([
-            weekView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
-            weekView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
-            weekView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 12),
-            weekView.heightAnchor.constraint(equalToConstant: 50)
-        ])
-    }
+//    func configureWeekView() {
+//        weekView = UIView(frame: .zero)
+//        self.view.addSubview(weekView)
+//        weekView.translatesAutoresizingMaskIntoConstraints = false
+//
+//        let width = self.view.frame.size.width - 160
+//        let dayWidth: Int = Int(width/7)
+//        self.dayViewHeight = CGFloat(dayWidth)
+//
+//        for day in 0...6 {
+//            let x = CGFloat((dayWidth+20)*day)+20
+//            let y = CGFloat(0)
+//            daysView.append(DWDayView(x: x, y: y, width: CGFloat(dayWidth), height: CGFloat(self.dayViewHeight), percentageCompleted: percentageGoal, dayInInt: day))
+//            weekView.addSubview(daysView[day])
+//        }
+//
+//        NSLayoutConstraint.activate([
+//            weekView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
+//            weekView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
+//            weekView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 12),
+//            weekView.heightAnchor.constraint(equalToConstant: 50)
+//        ])
+//    }
     
     
     
@@ -175,7 +203,7 @@ class DrinkVC: UIViewController {
     
     private func updateWeekView() {
         for day in 0...6 {
-            daysView[day].drawActivityCircle(percentage: percentageGoal)
+            daysView[day].drawActivityCircle(day: day, percentage: percentageGoal)
         }
     }
     
