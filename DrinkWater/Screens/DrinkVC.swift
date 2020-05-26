@@ -12,7 +12,7 @@ class DrinkVC: UIViewController {
         
     let weekStackView = UIStackView()
     let dateStackView = UIStackView()
-    var daysView: [DWWeekView] = []
+    var daysView: [DWDayView] = []
     let activityStackView = UIStackView()
     var drinkStackView = UIStackView()
     var activityView: DWActivityView!
@@ -74,6 +74,35 @@ class DrinkVC: UIViewController {
         present(navController, animated: true)
     }
     
+    func configureUIElements() {
+        
+        let weekActivityVC = WeekActivityVC()
+        self.add(childVC: weekActivityVC, to: self.weekStackView)
+//        let todayDateVC = TodayDateVC()
+//        self.add(childVC: todayDateVC, to: self.dateStackView)
+//        let activityVC = ActivityVC()
+//        self.add(childVC: activityVC, to: self.activityView)
+
+    }
+    
+    
+    func layoutUI() {
+        
+    }
+    
+    
+    
+    func configureStackView() {
+        
+    }
+    
+    
+    func add(childVC: UIViewController, to containerView: UIView) {
+        addChild(childVC)
+        containerView.addSubview(childVC.view)
+        childVC.view.frame = containerView.bounds
+        childVC.didMove(toParent: self)
+    }
     
     func configureWeekView() {
         weekView = UIView(frame: .zero)
@@ -87,7 +116,7 @@ class DrinkVC: UIViewController {
         for day in 0...6 {
             let x = CGFloat((dayWidth+20)*day)+20
             let y = CGFloat(0)
-            daysView.append(DWWeekView(x: x, y: y, width: CGFloat(dayWidth), height: CGFloat(self.dayViewHeight), percentageCompleted: percentageGoal, dayInInt: day)) 
+            daysView.append(DWDayView(x: x, y: y, width: CGFloat(dayWidth), height: CGFloat(self.dayViewHeight), percentageCompleted: percentageGoal, dayInInt: day)) 
             weekView.addSubview(daysView[day])
         }
         

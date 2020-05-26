@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DWWeekView: UIView {
+class DWDayView: UIView {
 
     var circlePath: UIBezierPath!
     var shadowPath: UIBezierPath!
