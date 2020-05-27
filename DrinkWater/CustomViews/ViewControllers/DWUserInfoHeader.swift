@@ -55,7 +55,6 @@ class DWUserInfoHeaderVC: UIViewController {
     
     func layoutUI() {
         let padding: CGFloat = 20
-        let textImagepadding: CGFloat = 12
         
         locationImageView.translatesAutoresizingMaskIntoConstraints = false
         

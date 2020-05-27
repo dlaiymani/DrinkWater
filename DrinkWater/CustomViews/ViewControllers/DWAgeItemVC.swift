@@ -46,9 +46,6 @@ class DWAgeItemVC: UIViewController {
     }
     
     private func configureAgePicker() {
-//     //   agePicker.tintColor = UIColor.white
-//     //   agePicker.backgroundColor = UIColor.clear
-//        agePicker.setValue(UIColor.white, forKeyPath: "textColor")
 
         agePicker.delegate = self
         agePicker.dataSource = self

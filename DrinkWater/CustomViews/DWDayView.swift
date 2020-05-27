@@ -30,8 +30,7 @@ class DWDayView: UIView {
         super.init(frame: frame)
      
         self.backgroundColor = UIColor.black
-//        setWeekDays()
-//        drawShadowCircle()
+
     }
     
      
@@ -39,26 +38,6 @@ class DWDayView: UIView {
         super.init(coder: aDecoder)
     }
     
-        
-//    init(x: CGFloat, y: CGFloat, width: CGFloat, height: CGFloat, percentageCompleted: Double, dayInInt: Int) {
-//        super.init(frame: .zero)
-//
-//        self.width = width
-//        self.height = height
-//        self.dayInInt = dayInInt
-//
-//        self.frame = CGRect(x: x, y: y, width: width, height: height+CGFloat(self.padding))
-//        self.backgroundColor = UIColor.black
-//
-//        if self.todayInInt == self.dayInInt {
-//            self.percentageCompleted = percentageCompleted
-//        } else {
-//            self.percentageCompleted = 0.0
-//        }
-//
-//        setWeekDays()
-//        drawShadowCircle()
-//    }
     
     
     func drawWeekDays(day: Int) {

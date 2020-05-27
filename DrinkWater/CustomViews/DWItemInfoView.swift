@@ -15,7 +15,6 @@ enum ItemInfoType {
 
 class DWItemInfoView: UIView {
 
-   // let symbolImageView = UIImageView()
     let symbolLabel = DWTitleLabel(textAlignment: .left, fontSize: 14)
     let titleLabel = DWBoldLabel(textAlignment: .left, fontSize: 14)
     let countLabel = DWTitleLabel(textAlignment: .center, fontSize: 14)
@@ -52,24 +51,4 @@ class DWItemInfoView: UIView {
             countLabel.heightAnchor.constraint(equalToConstant: 18)
         ])
     }
-    
-    
-     func set(itemInfoType: ItemInfoType, withCount count: String) {
-            switch itemInfoType {
-            case .age:
-                symbolLabel.text = "🎂"
-                titleLabel.text = "Age"
-            case .height:
-                symbolLabel.text = "👫"
-                titleLabel.text = "Height"
-            case .weight:
-                symbolLabel.text = "⏲"
-                titleLabel.text = "Weight"
-            case .sex:
-                symbolLabel.text = "⚤"
-                titleLabel.text = "Sex"
-            }
-            countLabel.text = String(count)
-
-        }
 }

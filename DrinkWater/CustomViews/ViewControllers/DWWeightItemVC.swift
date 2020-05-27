@@ -47,9 +47,6 @@ class DWWeightItemVC: UIViewController {
     }
     
     private func configureAgePicker() {
-//     //   agePicker.tintColor = UIColor.white
-//     //   agePicker.backgroundColor = UIColor.clear
-//        agePicker.setValue(UIColor.white, forKeyPath: "textColor")
 
         weightPicker.delegate = self
         weightPicker.dataSource = self
@@ -105,8 +102,6 @@ extension DWWeightItemVC: UIPickerViewDataSource {
 
 
 extension DWWeightItemVC: UIPickerViewDelegate {
-    
-   
     
     func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
         let color = (row == pickerView.selectedRow(inComponent: component)) ? UIColor(cgColor: DWColors.greenColor) : UIColor.white

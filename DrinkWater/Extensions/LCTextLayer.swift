@@ -19,14 +19,14 @@ class LCTextLayer : CATextLayer {
     }
 
     override init(layer: Any?) {
-        super.init(layer: layer)
+        super.init(layer: layer as Any)
     }
 
     required init(coder aDecoder: NSCoder) {
         super.init(layer: aDecoder)
     }
 
-    override func draw(in ctx: CGContext!) {
+    override func draw(in ctx: CGContext) {
         let fontSize = self.fontSize
         let height = self.bounds.size.height
         let deltaY = (height-fontSize)/2 - fontSize/10

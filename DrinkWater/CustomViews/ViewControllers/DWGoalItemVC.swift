@@ -79,29 +79,11 @@ class DWGoalItemVC: UIViewController {
             goalTitleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
             goalTitleLabel.heightAnchor.constraint(equalToConstant: 20),
             
-        //    stackView.topAnchor.constraint(equalTo: goalTitleLabel.bottomAnchor, constant: 0),
             stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             stackView.widthAnchor.constraint(equalToConstant: 140),
             stackView.heightAnchor.constraint(equalToConstant: 25),
-            
-//            plusButton.topAnchor.constraint(equalTo: goalTitleLabel.bottomAnchor, constant: 20),
-//            plusButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-//            plusButton.widthAnchor.constraint(equalToConstant: buttonsSize),
-//            plusButton.heightAnchor.constraint(equalToConstant: buttonsSize)
-
-//            weightPicker.topAnchor.constraint(equalTo: weightLabel.bottomAnchor, constant: 0),
-//            weightPicker.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-//            weightPicker.widthAnchor.constraint(equalToConstant: 80),
-//            weightPicker.heightAnchor.constraint(equalToConstant: 80),
-//
-//            unitLabel.centerYAnchor.constraint(equalTo: weightPicker.centerYAnchor),
-//            unitLabel.leadingAnchor.constraint(equalTo: weightPicker.trailingAnchor, constant: 0),
-//            unitLabel.heightAnchor.constraint(equalToConstant: 20),
-
         ])
-        
-        
     }
     
     

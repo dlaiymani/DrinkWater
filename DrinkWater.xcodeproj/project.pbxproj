@@ -17,7 +17,6 @@
 		AA4636572456B5D3002CFFC0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA4636562456B5D3002CFFC0 /* Assets.xcassets */; };
 		AA46365A2456B5D3002CFFC0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA4636582456B5D3002CFFC0 /* LaunchScreen.storyboard */; };
 		AA4636622456FC2C002CFFC0 /* DrinkVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4636612456FC2C002CFFC0 /* DrinkVC.swift */; };
-		AA4636642456FC5C002CFFC0 /* WeekStatsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4636632456FC5C002CFFC0 /* WeekStatsVC.swift */; };
 		AA4636662456FC89002CFFC0 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4636652456FC89002CFFC0 /* ProfileVC.swift */; };
 		AA4636682457099B002CFFC0 /* DWButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4636672457099B002CFFC0 /* DWButton.swift */; };
 		AA46366D24570D96002CFFC0 /* DWTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA46366C24570D96002CFFC0 /* DWTitleLabel.swift */; };
@@ -39,18 +38,13 @@
 		AAC831552464365B003A0C9F /* ActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC831542464365B003A0C9F /* ActionButton.swift */; };
 		AAC8315724643665003A0C9F /* ActionButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC8315624643665003A0C9F /* ActionButtonItem.swift */; };
 		AACFDF8D246BB714007299CD /* DayDrink.swift in Sources */ = {isa = PBXBuildFile; fileRef = AACFDF8C246BB714007299CD /* DayDrink.swift */; };
-		AACFDF8F246BB794007299CD /* DWChartsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AACFDF8E246BB794007299CD /* DWChartsView.swift */; };
 		AACFDF95246D9774007299CD /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = AACFDF94246D9774007299CD /* UIView+Ext.swift */; };
 		AACFDF97246D97CF007299CD /* UIImage+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = AACFDF96246D97CF007299CD /* UIImage+Ext.swift */; };
-		AACFDF99246E7291007299CD /* StatsPageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AACFDF98246E7291007299CD /* StatsPageVC.swift */; };
-		AACFDF9B246E8901007299CD /* YearStatsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AACFDF9A246E8901007299CD /* YearStatsVC.swift */; };
-		AAF4BF9F247400EB00185F04 /* WeekStatsVC2.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF4BF9E247400EB00185F04 /* WeekStatsVC2.swift */; };
+		AACFDF9B246E8901007299CD /* ChartStatsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AACFDF9A246E8901007299CD /* ChartStatsVC.swift */; };
 		AAF4BFA124754E0D00185F04 /* UserInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF4BFA024754E0D00185F04 /* UserInfoVC.swift */; };
 		AAF4BFA32475509F00185F04 /* DWUserInfoHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF4BFA22475509F00185F04 /* DWUserInfoHeader.swift */; };
 		AAF4BFA52475533F00185F04 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF4BFA42475533F00185F04 /* User.swift */; };
-		AAF4BFA72475606200185F04 /* DWItemInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF4BFA62475606200185F04 /* DWItemInfoVC.swift */; };
 		AAF4BFA9247561AE00185F04 /* DWItemInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF4BFA8247561AE00185F04 /* DWItemInfoView.swift */; };
-		AAF4BFAC2475676600185F04 /* DWPersoItemVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF4BFAB2475676600185F04 /* DWPersoItemVC.swift */; };
 		AAF4BFB02476B61300185F04 /* DWSexItemVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF4BFAF2476B61300185F04 /* DWSexItemVC.swift */; };
 		AAF4BFB22476CAF300185F04 /* DWAgeItemVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF4BFB12476CAF300185F04 /* DWAgeItemVC.swift */; };
 /* End PBXBuildFile section */
@@ -68,7 +62,6 @@
 		AA4636592456B5D3002CFFC0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AA46365B2456B5D3002CFFC0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AA4636612456FC2C002CFFC0 /* DrinkVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkVC.swift; sourceTree = "<group>"; };
-		AA4636632456FC5C002CFFC0 /* WeekStatsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekStatsVC.swift; sourceTree = "<group>"; };
 		AA4636652456FC89002CFFC0 /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 		AA4636672457099B002CFFC0 /* DWButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DWButton.swift; sourceTree = "<group>"; };
 		AA46366C24570D96002CFFC0 /* DWTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DWTitleLabel.swift; sourceTree = "<group>"; };
@@ -90,18 +83,13 @@
 		AAC831542464365B003A0C9F /* ActionButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionButton.swift; sourceTree = "<group>"; };
 		AAC8315624643665003A0C9F /* ActionButtonItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionButtonItem.swift; sourceTree = "<group>"; };
 		AACFDF8C246BB714007299CD /* DayDrink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayDrink.swift; sourceTree = "<group>"; };
-		AACFDF8E246BB794007299CD /* DWChartsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DWChartsView.swift; sourceTree = "<group>"; };
 		AACFDF94246D9774007299CD /* UIView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
 		AACFDF96246D97CF007299CD /* UIImage+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Ext.swift"; sourceTree = "<group>"; };
-		AACFDF98246E7291007299CD /* StatsPageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsPageVC.swift; sourceTree = "<group>"; };
-		AACFDF9A246E8901007299CD /* YearStatsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YearStatsVC.swift; sourceTree = "<group>"; };
-		AAF4BF9E247400EB00185F04 /* WeekStatsVC2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekStatsVC2.swift; sourceTree = "<group>"; };
+		AACFDF9A246E8901007299CD /* ChartStatsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartStatsVC.swift; sourceTree = "<group>"; };
 		AAF4BFA024754E0D00185F04 /* UserInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoVC.swift; sourceTree = "<group>"; };
 		AAF4BFA22475509F00185F04 /* DWUserInfoHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DWUserInfoHeader.swift; sourceTree = "<group>"; };
 		AAF4BFA42475533F00185F04 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		AAF4BFA62475606200185F04 /* DWItemInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DWItemInfoVC.swift; sourceTree = "<group>"; };
 		AAF4BFA8247561AE00185F04 /* DWItemInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DWItemInfoView.swift; sourceTree = "<group>"; };
-		AAF4BFAB2475676600185F04 /* DWPersoItemVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DWPersoItemVC.swift; sourceTree = "<group>"; };
 		AAF4BFAF2476B61300185F04 /* DWSexItemVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DWSexItemVC.swift; sourceTree = "<group>"; };
 		AAF4BFB12476CAF300185F04 /* DWAgeItemVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DWAgeItemVC.swift; sourceTree = "<group>"; };
 		B17F0BB4FBD6CA8C8A894DFE /* Pods-DrinkWater.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DrinkWater.debug.xcconfig"; path = "Target Support Files/Pods-DrinkWater/Pods-DrinkWater.debug.xcconfig"; sourceTree = "<group>"; };
@@ -173,7 +161,6 @@
 				AA9E0918245BEB56004E2CE6 /* DWBoldLabel.swift */,
 				AAC1B56B2462A75E00AF04ED /* DWActivityView.swift */,
 				AAC1B56D2462ACCF00AF04ED /* DWDayView.swift */,
-				AACFDF8E246BB794007299CD /* DWChartsView.swift */,
 				AAF4BFA8247561AE00185F04 /* DWItemInfoView.swift */,
 			);
 			path = CustomViews;
@@ -183,9 +170,7 @@
 			isa = PBXGroup;
 			children = (
 				AA4636612456FC2C002CFFC0 /* DrinkVC.swift */,
-				AA4636632456FC5C002CFFC0 /* WeekStatsVC.swift */,
-				AAF4BF9E247400EB00185F04 /* WeekStatsVC2.swift */,
-				AACFDF9A246E8901007299CD /* YearStatsVC.swift */,
+				AACFDF9A246E8901007299CD /* ChartStatsVC.swift */,
 				AA4636652456FC89002CFFC0 /* ProfileVC.swift */,
 				AAF4BFA024754E0D00185F04 /* UserInfoVC.swift */,
 			);
@@ -241,13 +226,10 @@
 			isa = PBXGroup;
 			children = (
 				AAF4BFA22475509F00185F04 /* DWUserInfoHeader.swift */,
-				AAF4BFA62475606200185F04 /* DWItemInfoVC.swift */,
-				AAF4BFAB2475676600185F04 /* DWPersoItemVC.swift */,
 				AAF4BFAF2476B61300185F04 /* DWSexItemVC.swift */,
 				AAF4BFB12476CAF300185F04 /* DWAgeItemVC.swift */,
 				AA5E30622477FE8E006F717F /* DWWeightItemVC.swift */,
 				AA5E30642478018D006F717F /* DWGoalItemVC.swift */,
-				AACFDF98246E7291007299CD /* StatsPageVC.swift */,
 				AA6B4251247CF013008187E3 /* WeekActivityVC.swift */,
 				AA455583247D638700C5B8EC /* DateVC.swift */,
 				AA455585247D67E600C5B8EC /* ActivityVC.swift */,
@@ -379,17 +361,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				AA20DFC3247E8C420037A649 /* StatsType.swift in Sources */,
-				AAF4BFAC2475676600185F04 /* DWPersoItemVC.swift in Sources */,
-				AACFDF8F246BB794007299CD /* DWChartsView.swift in Sources */,
 				AA46367124574474002CFFC0 /* Date+Ext.swift in Sources */,
 				AA5E30652478018D006F717F /* DWGoalItemVC.swift in Sources */,
 				AAF4BFA32475509F00185F04 /* DWUserInfoHeader.swift in Sources */,
 				AA4636682457099B002CFFC0 /* DWButton.swift in Sources */,
 				AA4636662456FC89002CFFC0 /* ProfileVC.swift in Sources */,
 				AAA5A9592460495C001237D0 /* DWColors.swift in Sources */,
-				AACFDF9B246E8901007299CD /* YearStatsVC.swift in Sources */,
+				AACFDF9B246E8901007299CD /* ChartStatsVC.swift in Sources */,
 				AA9E091D245C2E16004E2CE6 /* CGFloat+Ext.swift in Sources */,
-				AA4636642456FC5C002CFFC0 /* WeekStatsVC.swift in Sources */,
 				AA4636622456FC2C002CFFC0 /* DrinkVC.swift in Sources */,
 				AAC1B56C2462A75E00AF04ED /* DWActivityView.swift in Sources */,
 				AAC8315324642FA0003A0C9F /* LCTextLayer.swift in Sources */,
@@ -404,16 +383,13 @@
 				AA46366F24574072002CFFC0 /* DWBodyLabel.swift in Sources */,
 				AA6B4252247CF013008187E3 /* WeekActivityVC.swift in Sources */,
 				AA46364E2456B5D1002CFFC0 /* AppDelegate.swift in Sources */,
-				AAF4BF9F247400EB00185F04 /* WeekStatsVC2.swift in Sources */,
 				AA46367424574516002CFFC0 /* String+Ext.swift in Sources */,
 				AAC8315724643665003A0C9F /* ActionButtonItem.swift in Sources */,
 				AA5E30632477FE8E006F717F /* DWWeightItemVC.swift in Sources */,
-				AAF4BFA72475606200185F04 /* DWItemInfoVC.swift in Sources */,
 				AAA5A95B24618E53001237D0 /* Int+Ext.swift in Sources */,
 				AA46367624582B1E002CFFC0 /* UIButton+Ext.swift in Sources */,
 				AA4636502456B5D1002CFFC0 /* SceneDelegate.swift in Sources */,
 				AACFDF95246D9774007299CD /* UIView+Ext.swift in Sources */,
-				AACFDF99246E7291007299CD /* StatsPageVC.swift in Sources */,
 				AA46367824583278002CFFC0 /* Helper.swift in Sources */,
 				AA20DFC1247E771E0037A649 /* StatsVC.swift in Sources */,
 				AACFDF97246D97CF007299CD /* UIImage+Ext.swift in Sources */,

@@ -30,9 +30,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let drinkVC = DrinkVC()
         let navVC = UINavigationController(rootViewController: drinkVC)
         navVC.navigationBar.barTintColor = .black
-        navVC.navigationBar.tintColor = .systemBlue
-        navVC.title = "toto"
-        navVC.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: nil, action: nil)
+    //    navVC.navigationBar.tintColor = .systemBlue
+   //     navVC.title = "toto"
+     //   navVC.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: nil, action: nil)
         
         return navVC
     }
@@ -44,11 +44,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         return drinkVC
     }
     
-    func createStatsViewController() -> UIViewController {
-        let statsVC = WeekStatsVC()
-        statsVC.tabBarItem = UITabBarItem(title: "Progress", image: UIImage(systemName: "chart.bar"), tag: 1)
-        return statsVC
-    }
+//    func createStatsViewController() -> UIViewController {
+//        let statsVC = WeekStatsVC()
+//        statsVC.tabBarItem = UITabBarItem(title: "Progress", image: UIImage(systemName: "chart.bar"), tag: 1)
+//        return statsVC
+//    }
     
     func createProfileViewController() -> UIViewController {
         let profileVC = ProfileVC()
@@ -57,16 +57,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         return profileVC
     }
     
-    func createTabbar() -> UITabBarController {
-        let drinkVC = createDrinkViewController()
-        let statsVC = createStatsViewController()
-        let profileVC = createProfileViewController()
-        
-        let tabbar = UITabBarController()
-        tabbar.viewControllers = [drinkVC, statsVC, profileVC]
-        
-        return tabbar
-    }
+//    func createTabbar() -> UITabBarController {
+//        let drinkVC = createDrinkViewController()
+//        let statsVC = createStatsViewController()
+//        let profileVC = createProfileViewController()
+//        
+//        let tabbar = UITabBarController()
+//        tabbar.viewControllers = [drinkVC, statsVC, profileVC]
+//        
+//        return tabbar
+//    }
 
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.

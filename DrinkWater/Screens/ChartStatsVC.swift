@@ -12,7 +12,7 @@ import TinyConstraints
 
 
 
-class YearStatsVC: UIViewController, ChartViewDelegate {
+class ChartStatsVC: UIViewController, ChartViewDelegate {
     private var months: [String]! = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
     private var days: [String]! = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
     private var daysMonth: [String]! = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31",]

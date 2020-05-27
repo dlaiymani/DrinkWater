@@ -39,7 +39,6 @@ class ActivityVC: UIViewController {
         width = view.frame.size.width/1.5
         height = view.frame.size.width/1.5
         
-     //   activityView = DWActivityView(x: self.view.frame.size.width/2 - width/2, y: self.view.frame.size.height/2 - height/2, width: width, height: height, percentageCompleted: 0.0)
         activityView = DWActivityView(x: 0, y: 0, width: width, height: height, percentageCompleted: 0.0)
         self.view.addSubview(activityView)
     }
@@ -73,17 +72,5 @@ class ActivityVC: UIViewController {
     func animatePulsatingCircle() {
         activityView.animatePusaltingCircle()
     }
-
-//func configureActivityView() {
-//        let width: CGFloat = self.view.frame.size.width/1.5
-//        let height: CGFloat = width
-//
-//        percentageGoal = (drunkVolume*100)/drinkGoal
-//        self.radius = Double(width / 2.0)
-//
-//        activityView = DWActivityView(x: self.view.frame.size.width/2 - width/2, y: self.view.frame.size.height/2 - height/2, width: width, height: height, percentageCompleted: percentageGoal)
-//
-//        self.view.addSubview(activityView)
-//    }
 
 }

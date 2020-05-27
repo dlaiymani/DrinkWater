@@ -15,7 +15,7 @@ class StatsVC: UIViewController {
 
     private var statsStackView = UIStackView()
     var swipeDownLabel = DWTitleLabel(textAlignment: .center, fontSize: 17)
-    let yearVC = YearStatsVC()
+    let yearVC = ChartStatsVC()
     
     var segmentedCtrl: UISegmentedControl!
 
@@ -60,9 +60,7 @@ class StatsVC: UIViewController {
         segmentedCtrl.selectedSegmentTintColor = UIColor(cgColor: DWColors.greenColor)
         UISegmentedControl.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], for: .selected)
 
-        segmentedCtrl.addTarget(self, action: Selector("changeStats"), for: .valueChanged)
-
-        // Add this custom Segmented Control to our view
+        segmentedCtrl.addTarget(self, action: #selector(self.changeStats), for: .valueChanged)
         
         configureSwipeDownMessage()
     }
