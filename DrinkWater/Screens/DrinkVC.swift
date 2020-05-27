@@ -46,13 +46,19 @@ class DrinkVC: UIViewController {
     func configureNavBar() {
         self.navigationController?.navigationBar.tintColor = UIColor(cgColor: DWColors.greenColor)
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "person.crop.circle"), style: .done, target: self, action: #selector(profileButtonTapped))
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "gear"), style: .done, target: self, action: #selector(profileButtonTapped))
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "gear"), style: .done, target: self, action: #selector(settingsButtonTapped))
     }
     
     
     @objc func profileButtonTapped() {
         let destVC = UserInfoVC()
-        destVC.username = "username"
+        let navController = UINavigationController(rootViewController: destVC)
+        present(navController, animated: true)
+    }
+    
+    
+    @objc func settingsButtonTapped() {
+        let destVC = SettingsInfoVC()
         let navController = UINavigationController(rootViewController: destVC)
         present(navController, animated: true)
     }
@@ -160,19 +166,11 @@ class DrinkVC: UIViewController {
         actionButton.setTitle("+", forState: UIControl.State())
         actionButton.backgroundColor = UIColor(cgColor: DWColors.pastelGreenColor)
         actionButton.action = { button in
-            button.toggleMenu()
-            
-//            if self.percentageGoal >= 1.0 {
-////                self.percentageGoal = 1.0
-////                self.activityVC.animateCircles(for: self.percentageGoal)
-////                self.activityVC.animatePulsatingCircle()
-//
-//                //self.animateCircles()
-//          //      self.activityView.animatePusaltingCircle()
-//           //     self.activityView.configureCongratLabel()
-//            } else {
-//                //button.toggleMenu()
-//            }
+            if self.percentageGoal >= 1.0 {
+                self.percentageGoal = 1.0
+            } else {
+                button.toggleMenu()
+            }
         }
     }
     
@@ -181,6 +179,7 @@ class DrinkVC: UIViewController {
         activityVC.animateCircles(for: percentageGoal)
         if percentageGoal >= 1.0 {
             percentageGoal = 1.0
+            actionButton.toggleMenu()
             activityVC.animateCircles(for: self.percentageGoal)
             activityVC.animatePulsatingCircle()
         }

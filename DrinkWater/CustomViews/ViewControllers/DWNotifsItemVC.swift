@@ -1,30 +1,29 @@
 //
-//  DWGoalItemVC.swift
+//  DWNotifsItemVC.swift
 //  DrinkWater
 //
-//  Created by David Laiymani on 22/05/2020.
+//  Created by David Laiymani on 27/05/2020.
 //  Copyright © 2020 David Laiymani. All rights reserved.
 //
 
 import UIKit
 
-class DWGoalItemVC: UIViewController {
+class DWNotifsItemVC: UIViewController {
     
-    let goalTitleLabel = DWTitleLabel(textAlignment: .left, fontSize: 15)
-    let goalLabel = DWTitleLabel(textAlignment: .left, fontSize: 18)
+    let notifTitleLabel = DWTitleLabel(textAlignment: .left, fontSize: 15)
+    let nbNotifsLabel = DWTitleLabel(textAlignment: .left, fontSize: 18)
     let plusButton = DWButton(backgroundColor: DWColors.greenColor, title: "+")
     let minusButton = DWButton(backgroundColor: DWColors.greenColor, title: "-")
     
     let stackView = UIStackView()
     
-    let goal = 200
+    let goal = 3
     private let buttonsSize: CGFloat = 25
     
     var user: User!
     
-    init(user: User) {
+    init() {
         super.init(nibName: nil, bundle: nil)
-        self.user = user
     }
     
     required init?(coder: NSCoder) {
@@ -59,25 +58,25 @@ class DWGoalItemVC: UIViewController {
     
     private func configureGoalLabel() {
         
-        goalLabel.text = "200 cl"
+        nbNotifsLabel.text = "3"
 
     }
     
     
     private func layoutUI() {
-        view.addSubview(goalTitleLabel)
+        view.addSubview(notifTitleLabel)
        // view.addSubview(plusButton)
         view.addSubview(stackView)
 
-        goalTitleLabel.text = "🎯 Daily goal"
+        notifTitleLabel.text = "🔔 Notifications / day"
         
         let padding: CGFloat = 20
         stackView.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
-            goalTitleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 10),
-            goalTitleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
-            goalTitleLabel.heightAnchor.constraint(equalToConstant: 20),
+            notifTitleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 10),
+            notifTitleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
+            notifTitleLabel.heightAnchor.constraint(equalToConstant: 20),
             
             stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -99,7 +98,8 @@ class DWGoalItemVC: UIViewController {
         ])
         
         stackView.addArrangedSubview(minusButton)
-        stackView.addArrangedSubview(goalLabel)
+        stackView.addArrangedSubview(nbNotifsLabel)
         stackView.addArrangedSubview(plusButton)
     }
 }
+

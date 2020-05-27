@@ -13,32 +13,25 @@ import UIKit
 //    func didTapGetFollowers(for user: User)
 //}
 
-class UserInfoVC: UIViewController {
+class SettingsInfoVC: UIViewController {
     
-    let itemViewSex = UIView()
-    let itemViewAge = UIView()
-    let itemViewWeight = UIView()
-    let itemViewGoal = UIView()
+    let itemViewUnits = UIView()
+    let itemViewNotifications = UIView()
+    let itemViewGlassSizes = UIView()
     var itemViews: [UIView] = []
     
     let stackView = UIStackView()
 
     let padding: CGFloat = 20
-    
-    var username: String!
-    
+        
     var viewSize: CGFloat = 0
     
-    var user: User?
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        user = User(username: username, name: "David Mclem", location: nil, age: 25, weight: 80, height: 180, sport: true, sex: "M", preferredDrinkSize: [25, 50, 75], createdAt: "20/05/2020")
-
         configureViewController()
         layoutUI()
-        configureUIElements(with: user!)
+        configureUIElements()
         configureStackView()
     }
     
@@ -51,43 +44,34 @@ class UserInfoVC: UIViewController {
         navigationItem.leftBarButtonItem = cancelButton
         self.navigationController?.navigationBar.tintColor = UIColor(cgColor: DWColors.greenColor)
         self.navigationController?.navigationBar.barTintColor = .black
-       // self.navigationController?.navigationBar.isTranslucent = true
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
-        self.title = "Profil"
+        self.title = "Setings"
 
     }
     
     
-    func configureUIElements(with user: User) {
+    func configureUIElements() {
         
-        let sexItemVC = DWSexItemVC(user: user)
-        self.add(childVC: sexItemVC, to: self.itemViewSex)
-        let ageItemVC = DWAgeItemVC(user: user)
-        self.add(childVC: ageItemVC, to: self.itemViewAge)
-        let weightItemVC = DWWeightItemVC(user: user)
-        self.add(childVC: weightItemVC, to: self.itemViewWeight)
-        let goalItemVC = DWGoalItemVC(user: user)
-        self.add(childVC: goalItemVC, to: self.itemViewGoal)
+        let unitsItemVC = DWUnitsItemVC()
+        self.add(childVC: unitsItemVC, to: self.itemViewUnits)
+        let notifsItemVC = DWNotifsItemVC()
+        self.add(childVC: notifsItemVC, to: self.itemViewNotifications)
+        let glassSizeItemVC = DWGlassSizeItemVC()
+        self.add(childVC: glassSizeItemVC, to: self.itemViewGlassSizes)
+       
     }
         
     
     func layoutUI() {
         
-        itemViews = [itemViewSex, itemViewAge, itemViewWeight, itemViewGoal]
+        itemViews = [itemViewUnits, itemViewNotifications, itemViewGlassSizes]
 
-                
         for itemView in itemViews {
             view.addSubview(itemView)
             itemView.translatesAutoresizingMaskIntoConstraints = false
-            
         }
         
         viewSize = (self.view.frame.height-100)/4
-      // viewSize = 150
-        
-        NSLayoutConstraint.activate([
-           
-        ])
     }
 
     
@@ -106,14 +90,12 @@ class UserInfoVC: UIViewController {
             stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: padding),
             stackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -padding),
             stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
-            stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),        
+            stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
         ])
         
-        stackView.addArrangedSubview(itemViewSex)
-        stackView.addArrangedSubview(itemViewAge)
-        stackView.addArrangedSubview(itemViewWeight)
-        stackView.addArrangedSubview(itemViewGoal)
-
+        stackView.addArrangedSubview(itemViewUnits)
+        stackView.addArrangedSubview(itemViewNotifications)
+        stackView.addArrangedSubview(itemViewGlassSizes)
        }
     
     
@@ -130,6 +112,7 @@ class UserInfoVC: UIViewController {
     }
     
 }
+
 
 
 

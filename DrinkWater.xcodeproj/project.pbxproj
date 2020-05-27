@@ -10,6 +10,10 @@
 		6FFA7AB0AF4D17E673BF8D3E /* Pods_DrinkWater.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C774B73DDBDBE85976D91C1 /* Pods_DrinkWater.framework */; };
 		AA20DFC1247E771E0037A649 /* StatsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA20DFC0247E771E0037A649 /* StatsVC.swift */; };
 		AA20DFC3247E8C420037A649 /* StatsType.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA20DFC2247E8C420037A649 /* StatsType.swift */; };
+		AA20DFC5247E9F0A0037A649 /* SettingsInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA20DFC4247E9F0A0037A649 /* SettingsInfoVC.swift */; };
+		AA20DFC7247EA0A90037A649 /* DWUnitsItemVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA20DFC6247EA0A90037A649 /* DWUnitsItemVC.swift */; };
+		AA20DFC9247EA1AF0037A649 /* DWNotifsItemVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA20DFC8247EA1AF0037A649 /* DWNotifsItemVC.swift */; };
+		AA20DFCB247EA3350037A649 /* DWGlassSizeItemVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA20DFCA247EA3350037A649 /* DWGlassSizeItemVC.swift */; };
 		AA455584247D638700C5B8EC /* DateVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA455583247D638700C5B8EC /* DateVC.swift */; };
 		AA455586247D67E600C5B8EC /* ActivityVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA455585247D67E600C5B8EC /* ActivityVC.swift */; };
 		AA46364E2456B5D1002CFFC0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA46364D2456B5D1002CFFC0 /* AppDelegate.swift */; };
@@ -17,7 +21,6 @@
 		AA4636572456B5D3002CFFC0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA4636562456B5D3002CFFC0 /* Assets.xcassets */; };
 		AA46365A2456B5D3002CFFC0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA4636582456B5D3002CFFC0 /* LaunchScreen.storyboard */; };
 		AA4636622456FC2C002CFFC0 /* DrinkVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4636612456FC2C002CFFC0 /* DrinkVC.swift */; };
-		AA4636662456FC89002CFFC0 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4636652456FC89002CFFC0 /* ProfileVC.swift */; };
 		AA4636682457099B002CFFC0 /* DWButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4636672457099B002CFFC0 /* DWButton.swift */; };
 		AA46366D24570D96002CFFC0 /* DWTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA46366C24570D96002CFFC0 /* DWTitleLabel.swift */; };
 		AA46366F24574072002CFFC0 /* DWBodyLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA46366E24574072002CFFC0 /* DWBodyLabel.swift */; };
@@ -53,6 +56,10 @@
 		4C774B73DDBDBE85976D91C1 /* Pods_DrinkWater.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DrinkWater.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA20DFC0247E771E0037A649 /* StatsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsVC.swift; sourceTree = "<group>"; };
 		AA20DFC2247E8C420037A649 /* StatsType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsType.swift; sourceTree = "<group>"; };
+		AA20DFC4247E9F0A0037A649 /* SettingsInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsInfoVC.swift; sourceTree = "<group>"; };
+		AA20DFC6247EA0A90037A649 /* DWUnitsItemVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DWUnitsItemVC.swift; sourceTree = "<group>"; };
+		AA20DFC8247EA1AF0037A649 /* DWNotifsItemVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DWNotifsItemVC.swift; sourceTree = "<group>"; };
+		AA20DFCA247EA3350037A649 /* DWGlassSizeItemVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DWGlassSizeItemVC.swift; sourceTree = "<group>"; };
 		AA455583247D638700C5B8EC /* DateVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateVC.swift; sourceTree = "<group>"; };
 		AA455585247D67E600C5B8EC /* ActivityVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityVC.swift; sourceTree = "<group>"; };
 		AA46364A2456B5D1002CFFC0 /* DrinkWater.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DrinkWater.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -62,7 +69,6 @@
 		AA4636592456B5D3002CFFC0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AA46365B2456B5D3002CFFC0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AA4636612456FC2C002CFFC0 /* DrinkVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkVC.swift; sourceTree = "<group>"; };
-		AA4636652456FC89002CFFC0 /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 		AA4636672457099B002CFFC0 /* DWButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DWButton.swift; sourceTree = "<group>"; };
 		AA46366C24570D96002CFFC0 /* DWTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DWTitleLabel.swift; sourceTree = "<group>"; };
 		AA46366E24574072002CFFC0 /* DWBodyLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DWBodyLabel.swift; sourceTree = "<group>"; };
@@ -171,8 +177,8 @@
 			children = (
 				AA4636612456FC2C002CFFC0 /* DrinkVC.swift */,
 				AACFDF9A246E8901007299CD /* ChartStatsVC.swift */,
-				AA4636652456FC89002CFFC0 /* ProfileVC.swift */,
 				AAF4BFA024754E0D00185F04 /* UserInfoVC.swift */,
+				AA20DFC4247E9F0A0037A649 /* SettingsInfoVC.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -234,6 +240,9 @@
 				AA455583247D638700C5B8EC /* DateVC.swift */,
 				AA455585247D67E600C5B8EC /* ActivityVC.swift */,
 				AA20DFC0247E771E0037A649 /* StatsVC.swift */,
+				AA20DFC6247EA0A90037A649 /* DWUnitsItemVC.swift */,
+				AA20DFC8247EA1AF0037A649 /* DWNotifsItemVC.swift */,
+				AA20DFCA247EA3350037A649 /* DWGlassSizeItemVC.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -362,10 +371,10 @@
 			files = (
 				AA20DFC3247E8C420037A649 /* StatsType.swift in Sources */,
 				AA46367124574474002CFFC0 /* Date+Ext.swift in Sources */,
+				AA20DFC7247EA0A90037A649 /* DWUnitsItemVC.swift in Sources */,
 				AA5E30652478018D006F717F /* DWGoalItemVC.swift in Sources */,
 				AAF4BFA32475509F00185F04 /* DWUserInfoHeader.swift in Sources */,
 				AA4636682457099B002CFFC0 /* DWButton.swift in Sources */,
-				AA4636662456FC89002CFFC0 /* ProfileVC.swift in Sources */,
 				AAA5A9592460495C001237D0 /* DWColors.swift in Sources */,
 				AACFDF9B246E8901007299CD /* ChartStatsVC.swift in Sources */,
 				AA9E091D245C2E16004E2CE6 /* CGFloat+Ext.swift in Sources */,
@@ -375,6 +384,7 @@
 				AAF4BFA52475533F00185F04 /* User.swift in Sources */,
 				AA46366D24570D96002CFFC0 /* DWTitleLabel.swift in Sources */,
 				AA9E0919245BEB56004E2CE6 /* DWBoldLabel.swift in Sources */,
+				AA20DFC5247E9F0A0037A649 /* SettingsInfoVC.swift in Sources */,
 				AAC1B56E2462ACCF00AF04ED /* DWDayView.swift in Sources */,
 				AAF4BFA9247561AE00185F04 /* DWItemInfoView.swift in Sources */,
 				AA455586247D67E600C5B8EC /* ActivityVC.swift in Sources */,
@@ -384,6 +394,7 @@
 				AA6B4252247CF013008187E3 /* WeekActivityVC.swift in Sources */,
 				AA46364E2456B5D1002CFFC0 /* AppDelegate.swift in Sources */,
 				AA46367424574516002CFFC0 /* String+Ext.swift in Sources */,
+				AA20DFC9247EA1AF0037A649 /* DWNotifsItemVC.swift in Sources */,
 				AAC8315724643665003A0C9F /* ActionButtonItem.swift in Sources */,
 				AA5E30632477FE8E006F717F /* DWWeightItemVC.swift in Sources */,
 				AAA5A95B24618E53001237D0 /* Int+Ext.swift in Sources */,
@@ -392,6 +403,7 @@
 				AACFDF95246D9774007299CD /* UIView+Ext.swift in Sources */,
 				AA46367824583278002CFFC0 /* Helper.swift in Sources */,
 				AA20DFC1247E771E0037A649 /* StatsVC.swift in Sources */,
+				AA20DFCB247EA3350037A649 /* DWGlassSizeItemVC.swift in Sources */,
 				AACFDF97246D97CF007299CD /* UIImage+Ext.swift in Sources */,
 				AAF4BFB22476CAF300185F04 /* DWAgeItemVC.swift in Sources */,
 				AAC831552464365B003A0C9F /* ActionButton.swift in Sources */,

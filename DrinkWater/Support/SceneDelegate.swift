@@ -50,12 +50,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 //        return statsVC
 //    }
     
-    func createProfileViewController() -> UIViewController {
-        let profileVC = ProfileVC()
-        profileVC.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(systemName: "person"), tag: 2)
-        
-        return profileVC
-    }
+//    func createProfileViewController() -> UIViewController {
+//        let profileVC = ProfileVC()
+//        profileVC.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(systemName: "person"), tag: 2)
+//        
+//        return profileVC
+//    }
     
 //    func createTabbar() -> UITabBarController {
 //        let drinkVC = createDrinkViewController()
