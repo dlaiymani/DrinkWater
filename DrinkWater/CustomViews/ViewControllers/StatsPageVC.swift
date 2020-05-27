@@ -8,9 +8,15 @@
 
 import UIKit
 
-class StatsPageViewController: UIPageViewController {
+class StatsPageVC: UIPageViewController {
     
     var pages: [UIViewController] = [UIViewController]()
+    let weekVC = WeekStatsVC2()
+    let yearVC = YearStatsVC()
+    
+    var statsView = UIView()
+
+    
 
     override init(transitionStyle style: UIPageViewController.TransitionStyle, navigationOrientation: UIPageViewController.NavigationOrientation, options: [UIPageViewController.OptionsKey : Any]? = nil) {
            super.init(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
@@ -26,16 +32,47 @@ class StatsPageViewController: UIPageViewController {
         self.dataSource = self
            delegate = nil
 
-        let weekVC = WeekStatsVC2()
+        configureBackgroundView()
+        
+       // weekVC = WeekStatsVC2()
         pages.append(weekVC)
-        let yearVC = YearStatsVC()
+      //  yearVC = YearStatsVC()
         pages.append(yearVC)
 
         setViewControllers([pages[0]], direction: .forward, animated: false, completion: nil)
+                
+       // layoutUI()
+//
     }
+    
+    
+    private func configureBackgroundView() {
+        view.backgroundColor = .black
+
+    }
+    
+    
+    private func layoutUI() {
+       // view.addSubview(statsView)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        print(view.frame.size.width)
+        
+        NSLayoutConstraint.activate([
+        //    view.centerXAnchor.constraint(equalTo: view.superview!.centerXAnchor),
+        //    view.centerYAnchor.constraint(equalTo: view.superview!.centerYAnchor),
+            view.widthAnchor.constraint(equalToConstant: view.frame.size.width/1.2),
+            view.heightAnchor.constraint(equalToConstant: view.frame.size.height/1.5)
+        ])
+        
+        view.layoutIfNeeded()
+        
+    }
+    
+    
+    
 }
 
-extension StatsPageViewController: UIPageViewControllerDataSource {
+extension StatsPageVC: UIPageViewControllerDataSource {
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
 
         guard let viewControllerIndex = pages.firstIndex(of: viewController) else { return nil }
@@ -63,7 +100,7 @@ extension StatsPageViewController: UIPageViewControllerDataSource {
 }
 
 
-extension StatsPageViewController: UIPageViewControllerDelegate {
+extension StatsPageVC: UIPageViewControllerDelegate {
 
     // if you do NOT want the built-in PageControl (the "dots"), comment-out these funcs
 
@@ -76,7 +113,7 @@ extension StatsPageViewController: UIPageViewControllerDelegate {
         guard let firstVC = pageViewController.viewControllers?.first else {
             return 0
         }
-        guard let firstVCIndex = pages.index(of: firstVC) else {
+        guard let firstVCIndex = pages.firstIndex(of: firstVC) else {
             return 0
         }
 

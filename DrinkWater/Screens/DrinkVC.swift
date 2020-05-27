@@ -10,30 +10,19 @@ import UIKit
 
 class DrinkVC: UIViewController {
         
-   // let weekStackView = UIStackView()
     let weekView = UIView()
     let dateView = UIView()
     var activityView = UIView()
-    
+    var statsView = UIView()
+
     var itemViews: [UIView] = []
     
     var activityVC: ActivityVC!
     var weekActivityVC: WeekActivityVC!
+    let pageVC = StatsPageVC()
 
-    
-
-  //  let dateStackView = UIStackView()
     var daysView: [DWDayView] = []
-    let activityStackView = UIStackView()
-   // var activityView: DWActivityView!
-    var statsStackView = UIStackView()
-    var myContainerView: UIView!
     
-    let pageVC = StatsPageViewController()
-
-
-//    var todayLabel = DWBoldLabel(textAlignment: .left, fontSize: 17)
-//    var dateLabel = DWTitleLabel(textAlignment: .center, fontSize: 17)
     var activityLevelLabel = DWBoldLabel(textAlignment: .left, fontSize: 15)
     var swipeUpLabel = DWTitleLabel(textAlignment: .center, fontSize: 15)
     var swipeDownLabel = DWTitleLabel(textAlignment: .center, fontSize: 15)
@@ -42,18 +31,13 @@ class DrinkVC: UIViewController {
 
     
     var actionButton: ActionButton!
-    
-    var radius = 0.0
-    var dayViewHeight: CGFloat = 0.0
-    
+        
     var drunkVolume = 0.0
     var drinkGoal = 300.0
     var percentageGoal = 0.0
-    
-    var goalCompleted = false
-    
+        
     var upSwipe: UISwipeGestureRecognizer!
-    var downSwipe: UISwipeGestureRecognizer!
+   // var downSwipe: UISwipeGestureRecognizer!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -116,7 +100,17 @@ class DrinkVC: UIViewController {
                 
         view.addSubview(activityView)
         activityView.translatesAutoresizingMaskIntoConstraints = false
-
+        
+//        view.addSubview(statsView)
+//        statsView.translatesAutoresizingMaskIntoConstraints = false
+//
+//        NSLayoutConstraint.activate([
+//            statsView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+//            statsView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+//            statsView.widthAnchor.constraint(equalToConstant: view.frame.size.width),
+//            statsView.heightAnchor.constraint(equalToConstant: view.frame.size.height)
+//            ])
+        
         let space1 = UILayoutGuide()
         self.view.addLayoutGuide(space1)
          
@@ -158,6 +152,14 @@ class DrinkVC: UIViewController {
             swipeUpLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             swipeUpLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -50)
         ])
+    }
+    
+    
+    @objc func handleSwipeUp() {
+        let destVC = StatsVC()
+        //let navController = UINavigationController(rootViewController: destVC)
+        present(destVC, animated: true)
+        
     }
     
     
@@ -211,10 +213,84 @@ class DrinkVC: UIViewController {
     
     
     
-    func configureStackView() {
+    func configureStatsVC() {
         
+        addChild(pageVC)
+//        configureSwipeDownMessage()
+//        configureSwipeDownGesture()
     }
     
+    
+    
+    
+//    @objc func handleSwipeUp() {
+//
+//        addChild(pageVC)
+//        configureSwipeDownMessage()
+//       // configureSwipeDownGesture()
+//        //configureStatsVC()
+//       // statsView.backgroundColor = .black
+//        UIView.transition(with: self.view, duration: 0.5, options: .transitionFlipFromBottom, animations: {
+//            self.view.addSubview(self.pageVC.view)
+//            self.navigationController?.navigationBar.isHidden = true
+//        }, completion: { (Bool) in
+//            DWChartsView.playAnimations()
+//
+//            self.swipeDownLabel.isHidden = false
+//            self.statsBoldLabel.isHidden = false
+//            self.statsLabel.isHidden = false
+//            self.view.addGestureRecognizer(self.downSwipe)
+//            self.view.removeGestureRecognizer(self.upSwipe)
+//        })
+//
+//        pageVC.view.translatesAutoresizingMaskIntoConstraints = false
+//        statsView.addSubview(pageVC.view)
+//
+//        NSLayoutConstraint.activate([
+//            pageVC.view.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+//            pageVC.view.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+//            pageVC.view.widthAnchor.constraint(equalToConstant: view.frame.size.width/1.2),
+//            pageVC.view.heightAnchor.constraint(equalToConstant: view.frame.size.height/1.5)
+//        ])
+//
+//
+//        pageVC.didMove(toParent: self)
+//    }
+       
+    
+    
+//    private func configureSwipeDownMessage() {
+//        statsView.addSubview(swipeDownLabel)
+//        swipeDownLabel.text = "Swipe down to drink."
+//        NSLayoutConstraint.activate([
+//            swipeDownLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+//            swipeDownLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -50)
+//        ])
+//        swipeDownLabel.isHidden = true
+//    }
+    
+    
+    
+//    private func configureSwipeDownGesture() {
+//        downSwipe = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipeDown))
+//        downSwipe.direction = .down
+//    }
+    
+    
+//    @objc func handleSwipeDown() {
+//        UIView.transition(with: self.view, duration: 0.5, options: .transitionFlipFromTop, animations: {
+//         //   self.statsView.removeFromSuperview()
+//            self.pageVC.removeFromParent()
+//            self.navigationController?.navigationBar.isHidden = false
+//            self.view.removeGestureRecognizer(self.downSwipe)
+//            self.view.addGestureRecognizer(self.upSwipe)
+//
+//        }, completion: { (Bool) in
+//            let weekVC = self.pageVC.pages[0] as! WeekStatsVC2
+//           // weekVC.statsView.removeFromSuperview()
+//        })
+//    }
+   
     
     func add(childVC: UIViewController, to containerView: UIView) {
         self.addChild(childVC)
@@ -317,107 +393,36 @@ class DrinkVC: UIViewController {
     
     
     
-    func configureStatsVC() {
-        myContainerView = UIView()
-        myContainerView.translatesAutoresizingMaskIntoConstraints = false
-        myContainerView.backgroundColor = .black
-          
-        view.addSubview(myContainerView)
-        
-        NSLayoutConstraint.activate([
-            myContainerView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            myContainerView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            myContainerView.widthAnchor.constraint(equalToConstant: view.frame.size.width),
-            myContainerView.heightAnchor.constraint(equalToConstant: view.frame.size.height)
-            ])
-        
-        addChild(pageVC)
-        configureSwipeDownMessage()
-      //  configureStatsLabel()
-        configureSwipeDownGesture()
-    }
-        
-       
+   
     
-    @objc func handleSwipeUp() {
-        configureStatsVC()
-        myContainerView.backgroundColor = .black
-        UIView.transition(with: self.view, duration: 0.5, options: .transitionFlipFromBottom, animations: {
-                   self.view.addSubview(self.pageVC.view)
-                   self.navigationController?.navigationBar.isHidden = true
-               }, completion: { (Bool) in
-                DWChartsView.playAnimations()
-
-                self.swipeDownLabel.isHidden = false
-                self.statsBoldLabel.isHidden = false
-                self.statsLabel.isHidden = false
-                self.view.addGestureRecognizer(self.downSwipe)
-                self.view.removeGestureRecognizer(self.upSwipe)
-        })
-           
-        pageVC.view.translatesAutoresizingMaskIntoConstraints = false
-               
-        NSLayoutConstraint.activate([
-            pageVC.view.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            pageVC.view.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            pageVC.view.widthAnchor.constraint(equalToConstant: view.frame.size.width/1.2),
-            pageVC.view.heightAnchor.constraint(equalToConstant: view.frame.size.height/1.5)
-        ])
-
-        myContainerView.addSubview(pageVC.view)
-            
-        pageVC.didMove(toParent: self)
-    }
-    
-    
-    private func configureSwipeDownMessage() {
-        myContainerView.addSubview(swipeDownLabel)
-        swipeDownLabel.text = "Swipe down to drink."
-        NSLayoutConstraint.activate([
-            swipeDownLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            swipeDownLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -50)
-        ])
-        swipeDownLabel.isHidden = true
-    }
-    
-    
-    private func configureStatsLabel() {
-        myContainerView.addSubview(statsStackView)
-           
-        statsBoldLabel.text = "Week "
-        statsLabel.text = "achievements"
-        
-        statsStackView.axis = .horizontal
-        statsStackView.distribution = .equalSpacing
-        statsStackView.addArrangedSubview(statsBoldLabel)
-        statsStackView.addArrangedSubview(statsLabel)
-        statsStackView.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            statsStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            statsStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor,constant: 40)
-        ])
-        statsLabel.isHidden = true
-        statsBoldLabel.isHidden = true
-    }
-    
-    
-    private func configureSwipeDownGesture() {
-        downSwipe = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipeDown))
-        downSwipe.direction = .down
-    }
-    
-    
-    @objc func handleSwipeDown() {
-        UIView.transition(with: self.view, duration: 0.5, options: .transitionFlipFromTop, animations: {
-            self.myContainerView.removeFromSuperview()
-            self.navigationController?.navigationBar.isHidden = false
-            self.view.removeGestureRecognizer(self.downSwipe)
-            self.view.addGestureRecognizer(self.upSwipe)
-
-        }, completion: { (Bool) in
-            let weekVC = self.pageVC.pages[0] as! WeekStatsVC2
-           // weekVC.statsView.removeFromSuperview()
-        })
-    }
+//    private func configureSwipeDownMessage() {
+//        statsView.addSubview(swipeDownLabel)
+//        swipeDownLabel.text = "Swipe down to drink."
+//        NSLayoutConstraint.activate([
+//            swipeDownLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+//            swipeDownLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -50)
+//        ])
+//        swipeDownLabel.isHidden = true
+//    }
+//
+//
+//
+//    private func configureSwipeDownGesture() {
+//        downSwipe = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipeDown))
+//        downSwipe.direction = .down
+//    }
+//
+//
+//    @objc func handleSwipeDown() {
+//        UIView.transition(with: self.view, duration: 0.5, options: .transitionFlipFromTop, animations: {
+//            self.statsView.removeFromSuperview()
+//            self.navigationController?.navigationBar.isHidden = false
+//            self.view.removeGestureRecognizer(self.downSwipe)
+//            self.view.addGestureRecognizer(self.upSwipe)
+//
+//        }, completion: { (Bool) in
+//            let weekVC = self.pageVC.pages[0] as! WeekStatsVC2
+//           // weekVC.statsView.removeFromSuperview()
+//        })
+//    }
 }
