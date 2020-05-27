@@ -16,6 +16,9 @@ class DrinkVC: UIViewController {
     var activityView = UIView()
     
     var itemViews: [UIView] = []
+    
+    var activityVC: ActivityVC!
+    var weekActivityVC: WeekActivityVC!
 
     
 
@@ -59,6 +62,7 @@ class DrinkVC: UIViewController {
         configureNavBar()
         layoutUI()
         configureUIElements()
+        setupButtons()
 
       //  configureWeekView()
 //        configureActivityView()
@@ -85,11 +89,11 @@ class DrinkVC: UIViewController {
     
     func configureUIElements() {
         
-        let weekActivityVC = WeekActivityVC()
+        weekActivityVC = WeekActivityVC()
         self.add(childVC: weekActivityVC, to: self.weekView)
         let dateVC = DateVC()
         self.add(childVC: dateVC, to: self.dateView)
-        let activityVC = ActivityVC()
+        activityVC = ActivityVC()
         self.add(childVC: activityVC, to: self.activityView)
 
     }
@@ -154,6 +158,55 @@ class DrinkVC: UIViewController {
             swipeUpLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             swipeUpLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -50)
         ])
+    }
+    
+    
+    func setupButtons() {
+        let little = ActionButtonItem(title: "S", image: nil)
+        little.action = {item in
+            self.drunkVolume += 0.15
+            self.animateCircles()
+        }
+        let average = ActionButtonItem(title: "M", image: nil)
+        average.action = {item in
+            self.drunkVolume += 0.33
+            self.animateCircles()
+        }
+        let large = ActionButtonItem(title: "L", image: nil)
+        large.action = {item in
+            self.drunkVolume += 0.75
+            self.animateCircles()
+        }
+        
+        actionButton = ActionButton(attachedToView: self.view, items: [little, average, large])
+        actionButton.setTitle("+", forState: UIControl.State())
+        actionButton.backgroundColor = UIColor(cgColor: DWColors.pastelGreenColor)
+        actionButton.action = { button in
+            button.toggleMenu()
+            
+//            if self.percentageGoal >= 1.0 {
+////                self.percentageGoal = 1.0
+////                self.activityVC.animateCircles(for: self.percentageGoal)
+////                self.activityVC.animatePulsatingCircle()
+//
+//                //self.animateCircles()
+//          //      self.activityView.animatePusaltingCircle()
+//           //     self.activityView.configureCongratLabel()
+//            } else {
+//                //button.toggleMenu()
+//            }
+        }
+    }
+    
+    func animateCircles() {
+        percentageGoal = (drunkVolume*100)/drinkGoal
+        activityVC.animateCircles(for: percentageGoal)
+        if percentageGoal >= 1.0 {
+            percentageGoal = 1.0
+            activityVC.animateCircles(for: self.percentageGoal)
+            activityVC.animatePulsatingCircle()
+        }
+        weekActivityVC.updateWeekView(with: percentageGoal)
     }
     
     
@@ -239,58 +292,27 @@ class DrinkVC: UIViewController {
 //    }
     
     
-    private func updateWeekView() {
-        for day in 0...6 {
-            daysView[day].drawActivityCircle(day: day, percentage: percentageGoal)
-        }
-    }
+//    private func updateWeekView() {
+//        for day in 0...6 {
+//            daysView[day].drawActivityCircle(day: day, percentage: percentageGoal)
+//        }
+//    }
     
     
-    private func animateCircles() {
-        percentageGoal = (drunkVolume*100)/drinkGoal
-        if percentageGoal >= 1.0 {
-            percentageGoal = 1.0
-            goalCompleted = true
-            self.actionButton.disableActionButton()
-        //    self.activityView.animatePusaltingCircle()
-        }
-      //  activityView.animateActivityLabel(percentage: percentageGoal)
-     //   activityView.updateActivityCircle(percentage: percentageGoal)
-        updateWeekView()
-    }
+//    private func animateCircles() {
+//        percentageGoal = (drunkVolume*100)/drinkGoal
+//        if percentageGoal >= 1.0 {
+//            percentageGoal = 1.0
+//            goalCompleted = true
+//            self.actionButton.disableActionButton()
+//        //    self.activityView.animatePusaltingCircle()
+//        }
+//      //  activityView.animateActivityLabel(percentage: percentageGoal)
+//     //   activityView.updateActivityCircle(percentage: percentageGoal)
+//        updateWeekView()
+//    }
     
     
-    func setupButtons() {
-        let little = ActionButtonItem(title: "S", image: nil)
-        little.action = {item in
-            self.drunkVolume += 0.15
-            self.animateCircles()
-        }
-        let average = ActionButtonItem(title: "M", image: nil)
-        average.action = {item in
-            self.drunkVolume += 0.33
-            self.animateCircles()
-        }
-        let large = ActionButtonItem(title: "L", image: nil)
-        large.action = {item in
-            self.drunkVolume += 0.75
-            self.animateCircles()
-        }
-        
-        actionButton = ActionButton(attachedToView: self.view, items: [little, average, large])
-        actionButton.setTitle("+", forState: UIControl.State())
-        actionButton.backgroundColor = UIColor(cgColor: DWColors.pastelGreenColor)
-        actionButton.action = { button in
-            if self.percentageGoal >= 1.0 {
-                self.percentageGoal = 1.0
-                self.animateCircles()
-          //      self.activityView.animatePusaltingCircle()
-           //     self.activityView.configureCongratLabel()
-            } else {
-                button.toggleMenu()
-            }
-        }
-    }
     
     
     

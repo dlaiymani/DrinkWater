@@ -129,19 +129,19 @@ class DWDayView: UIView {
     
     func drawActivityCircle(day: Int, percentage: Double) {
         
-//        if self.todayInInt == self.dayInInt {
-//            self.percentageCompleted = percentage
-//        } else {
-//            self.percentageCompleted = 0.0
-//        }
+        if todayInInt == day {
+            self.percentageCompleted = percentage
+        } else {
+            self.percentageCompleted = 0.0
+        }
         
-        var endAngle = percentage*360.0 - 90.0
+        var endAngle = percentageCompleted*360.0 - 90.0
         if endAngle == 270.0 {
             endAngle = 269.0
         }
 
-        self.circlePath = UIBezierPath(arcCenter: CGPoint(x: width/2, y: (height/2)+self.padding),
-        radius: width/2,
+        self.circlePath = UIBezierPath(arcCenter: CGPoint(x: (width-padding)/2, y: (height/2)+self.padding),
+        radius: (width-padding)/2,
         startAngle: CGFloat(270.0).toRadians(),
         endAngle: CGFloat(endAngle).toRadians(),
         clockwise: true)

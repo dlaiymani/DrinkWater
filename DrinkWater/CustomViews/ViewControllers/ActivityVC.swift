@@ -56,7 +56,23 @@ class ActivityVC: UIViewController {
         ])
     }
     
+    
+    func animateCircles(for percentageGoal: Double) {
+//        if percentageGoal >= 1.0 {
+//            percentageGoal = 1.0
+//            goalCompleted = true
+//            self.actionButton.disableActionButton()
+        //    self.activityView.animatePusaltingCircle()
+       // }
+        activityView.animateActivityLabel(percentage: percentageGoal)
+        activityView.updateActivityCircle(percentage: percentageGoal)
+       // updateWeekView()
+    }
 
+    
+    func animatePulsatingCircle() {
+        activityView.animatePusaltingCircle()
+    }
 
 //func configureActivityView() {
 //        let width: CGFloat = self.view.frame.size.width/1.5

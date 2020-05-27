@@ -72,6 +72,13 @@ class WeekActivityVC: UIViewController {
             dayViews[day].drawWeekDays(day: day)
         }
     }
+    
+    
+    func updateWeekView(with percentageGoal: Double) {
+        for day in 0...6 {
+            dayViews[day].drawActivityCircle(day: day, percentage: percentageGoal)
+        }
+    }
 }
 
 
