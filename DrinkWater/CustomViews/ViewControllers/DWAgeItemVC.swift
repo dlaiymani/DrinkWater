@@ -14,18 +14,19 @@ class DWAgeItemVC: UIViewController {
     let agePicker = UIPickerView()
         
     lazy var pickerData: [Int] = {
+        let calendar = Calendar.current
+        let year = calendar.component(.year, from: Date())
         var years = [Int]()
-        for i in 1900...2020 { // Attention 2020
+        for i in 1900...year { // Attention 2020
             years.append(i)
         }
         return years
     }()
     
-    var user: User!
+    var yob = 1970
     
-    init(user: User) {
+    init() {
         super.init(nibName: nil, bundle: nil)
-        self.user = user
     }
     
     required init?(coder: NSCoder) {
@@ -96,7 +97,6 @@ extension DWAgeItemVC: UIPickerViewDataSource {
 
 extension DWAgeItemVC: UIPickerViewDelegate {
     
-   
     
     func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
         let color = (row == pickerView.selectedRow(inComponent: component)) ? UIColor(cgColor: DWColors.greenColor) : UIColor.white
@@ -105,7 +105,7 @@ extension DWAgeItemVC: UIPickerViewDelegate {
 
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         pickerView.reloadAllComponents()
-
+        yob = pickerData[row]
     }
     
 }

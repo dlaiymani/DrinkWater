@@ -9,16 +9,13 @@
 import Foundation
 
 struct User: Codable {
-    var username: String?
-    var name: String?
-    var location: String?
-    var age: Int?
-    var weight: Double?
-    var height: Double?
-    var sport: Bool?
-    var sex: String?
-    var preferredDrinkSize: [Int]?
-    let createdAt: String
+    var yob: Int
+    var weight: Double
+    var sex: String
+    var preferredDrinkSize: [Int]
+    var dailyGoal: Double
+    var units: Units
+    var nbOfNotifs: Int
 }
 
 

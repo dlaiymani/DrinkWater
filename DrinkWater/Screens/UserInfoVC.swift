@@ -21,6 +21,11 @@ class UserInfoVC: UIViewController {
     let itemViewGoal = UIView()
     var itemViews: [UIView] = []
     
+    var sexItemVC: DWSexItemVC!
+    var ageItemVC: DWAgeItemVC!
+    var weightItemVC: DWWeightItemVC!
+    var goalItemVC: DWGoalItemVC!
+    
     let stackView = UIStackView()
 
     let padding: CGFloat = 20
@@ -34,7 +39,7 @@ class UserInfoVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        user = User(username: username, name: "David Mclem", location: nil, age: 25, weight: 80, height: 180, sport: true, sex: "M", preferredDrinkSize: [25, 50, 75], createdAt: "20/05/2020")
+        user = User(yob: 25, weight: 80, sex: "M", preferredDrinkSize: [25, 50, 75], dailyGoal: 2000, units: Units.cl, nbOfNotifs: 3)
 
         configureViewController()
         layoutUI()
@@ -45,13 +50,12 @@ class UserInfoVC: UIViewController {
     
     func configureViewController() {
         view.backgroundColor = .black
-        let doneButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(dismissVC))
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveProfile))
         let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(dismissVC))
         navigationItem.rightBarButtonItem = doneButton
         navigationItem.leftBarButtonItem = cancelButton
         self.navigationController?.navigationBar.tintColor = UIColor(cgColor: DWColors.greenColor)
         self.navigationController?.navigationBar.barTintColor = .black
-       // self.navigationController?.navigationBar.isTranslucent = true
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         self.title = "Profil"
 
@@ -60,13 +64,13 @@ class UserInfoVC: UIViewController {
     
     func configureUIElements(with user: User) {
         
-        let sexItemVC = DWSexItemVC(user: user)
+        sexItemVC = DWSexItemVC()
         self.add(childVC: sexItemVC, to: self.itemViewSex)
-        let ageItemVC = DWAgeItemVC(user: user)
+        ageItemVC = DWAgeItemVC()
         self.add(childVC: ageItemVC, to: self.itemViewAge)
-        let weightItemVC = DWWeightItemVC(user: user)
+        weightItemVC = DWWeightItemVC()
         self.add(childVC: weightItemVC, to: self.itemViewWeight)
-        let goalItemVC = DWGoalItemVC(user: user)
+        goalItemVC = DWGoalItemVC()
         self.add(childVC: goalItemVC, to: self.itemViewGoal)
     }
         
@@ -74,29 +78,23 @@ class UserInfoVC: UIViewController {
     func layoutUI() {
         
         itemViews = [itemViewSex, itemViewAge, itemViewWeight, itemViewGoal]
-
                 
         for itemView in itemViews {
             view.addSubview(itemView)
             itemView.translatesAutoresizingMaskIntoConstraints = false
-            
         }
         
         viewSize = (self.view.frame.height-100)/4
-      // viewSize = 150
-        
-        NSLayoutConstraint.activate([
-           
-        ])
+
     }
 
     
     private func configureStackView() {
         
         view.addSubview(stackView)
-        stackView.axis = .vertical
-        stackView.distribution = .fillEqually
-        stackView.spacing = 20
+        stackView.axis          = .vertical
+        stackView.distribution  = .fillEqually
+        stackView.spacing       = 20
            
         stackView.translatesAutoresizingMaskIntoConstraints = false
            
@@ -129,6 +127,19 @@ class UserInfoVC: UIViewController {
         dismiss(animated: true)
     }
     
+    
+    @objc func saveProfile() {
+        
+        user = User(yob: ageItemVC.yob, weight: Double(weightItemVC.weight), sex: sexItemVC.sex, preferredDrinkSize: [12, 50, 100], dailyGoal: Double(goalItemVC.goal), units: .cl, nbOfNotifs: 3)
+        
+        PersistenceManager.updateWith(profile: user!) { [weak self] (error) in
+            guard let self = self else { return }
+            guard let error = error else { return }
+            print(error.rawValue)
+        }
+        
+        dismiss(animated: true)
+    }
 }
 
 

@@ -17,14 +17,11 @@ class DWGoalItemVC: UIViewController {
     
     let stackView = UIStackView()
     
-    let goal = 200
+    var goal = 1200
     private let buttonsSize: CGFloat = 25
     
-    var user: User!
-    
-    init(user: User) {
+    init() {
         super.init(nibName: nil, bundle: nil)
-        self.user = user
     }
     
     required init?(coder: NSCoder) {
@@ -54,12 +51,29 @@ class DWGoalItemVC: UIViewController {
         
         plusButton.set(cornerRadius: buttonsSize/2)
         minusButton.set(cornerRadius: buttonsSize/2)
+        
+        plusButton.addTarget(self, action: #selector(plusButtonTapped), for: .touchUpInside)
+        minusButton.addTarget(self, action: #selector(minusButtonTapped), for: .touchUpInside)
+    }
+    
+    
+    @objc private func plusButtonTapped() {
+        goal += 10
+        goalLabel.text = "\(goal) cl"
+        
+    }
+    
+    
+    @objc private func minusButtonTapped() {
+        goal -= 10
+        goalLabel.text = "\(goal) cl"
+
     }
     
     
     private func configureGoalLabel() {
         
-        goalLabel.text = "200 cl"
+        goalLabel.text = "\(goal) cl"
 
     }
     

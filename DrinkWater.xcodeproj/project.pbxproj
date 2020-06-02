@@ -31,6 +31,9 @@
 		AA5E30632477FE8E006F717F /* DWWeightItemVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5E30622477FE8E006F717F /* DWWeightItemVC.swift */; };
 		AA5E30652478018D006F717F /* DWGoalItemVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5E30642478018D006F717F /* DWGoalItemVC.swift */; };
 		AA6B4252247CF013008187E3 /* WeekActivityVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6B4251247CF013008187E3 /* WeekActivityVC.swift */; };
+		AA9AC7942481455A00422DC1 /* Units.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9AC7932481455A00422DC1 /* Units.swift */; };
+		AA9AC797248146C100422DC1 /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9AC796248146C100422DC1 /* PersistenceManager.swift */; };
+		AA9AC799248147C900422DC1 /* DWErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9AC798248147C900422DC1 /* DWErrors.swift */; };
 		AA9E0919245BEB56004E2CE6 /* DWBoldLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9E0918245BEB56004E2CE6 /* DWBoldLabel.swift */; };
 		AA9E091D245C2E16004E2CE6 /* CGFloat+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9E091C245C2E16004E2CE6 /* CGFloat+Ext.swift */; };
 		AAA5A9592460495C001237D0 /* DWColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA5A9582460495C001237D0 /* DWColors.swift */; };
@@ -45,7 +48,6 @@
 		AACFDF97246D97CF007299CD /* UIImage+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = AACFDF96246D97CF007299CD /* UIImage+Ext.swift */; };
 		AACFDF9B246E8901007299CD /* ChartStatsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AACFDF9A246E8901007299CD /* ChartStatsVC.swift */; };
 		AAF4BFA124754E0D00185F04 /* UserInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF4BFA024754E0D00185F04 /* UserInfoVC.swift */; };
-		AAF4BFA32475509F00185F04 /* DWUserInfoHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF4BFA22475509F00185F04 /* DWUserInfoHeader.swift */; };
 		AAF4BFA52475533F00185F04 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF4BFA42475533F00185F04 /* User.swift */; };
 		AAF4BFA9247561AE00185F04 /* DWItemInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF4BFA8247561AE00185F04 /* DWItemInfoView.swift */; };
 		AAF4BFB02476B61300185F04 /* DWSexItemVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF4BFAF2476B61300185F04 /* DWSexItemVC.swift */; };
@@ -79,6 +81,9 @@
 		AA5E30622477FE8E006F717F /* DWWeightItemVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DWWeightItemVC.swift; sourceTree = "<group>"; };
 		AA5E30642478018D006F717F /* DWGoalItemVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DWGoalItemVC.swift; sourceTree = "<group>"; };
 		AA6B4251247CF013008187E3 /* WeekActivityVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekActivityVC.swift; sourceTree = "<group>"; };
+		AA9AC7932481455A00422DC1 /* Units.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Units.swift; sourceTree = "<group>"; };
+		AA9AC796248146C100422DC1 /* PersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceManager.swift; sourceTree = "<group>"; };
+		AA9AC798248147C900422DC1 /* DWErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DWErrors.swift; sourceTree = "<group>"; };
 		AA9E0918245BEB56004E2CE6 /* DWBoldLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DWBoldLabel.swift; sourceTree = "<group>"; };
 		AA9E091C245C2E16004E2CE6 /* CGFloat+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGFloat+Ext.swift"; sourceTree = "<group>"; };
 		AAA5A9582460495C001237D0 /* DWColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DWColors.swift; sourceTree = "<group>"; };
@@ -93,7 +98,6 @@
 		AACFDF96246D97CF007299CD /* UIImage+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Ext.swift"; sourceTree = "<group>"; };
 		AACFDF9A246E8901007299CD /* ChartStatsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartStatsVC.swift; sourceTree = "<group>"; };
 		AAF4BFA024754E0D00185F04 /* UserInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoVC.swift; sourceTree = "<group>"; };
-		AAF4BFA22475509F00185F04 /* DWUserInfoHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DWUserInfoHeader.swift; sourceTree = "<group>"; };
 		AAF4BFA42475533F00185F04 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		AAF4BFA8247561AE00185F04 /* DWItemInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DWItemInfoView.swift; sourceTree = "<group>"; };
 		AAF4BFAF2476B61300185F04 /* DWSexItemVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DWSexItemVC.swift; sourceTree = "<group>"; };
@@ -144,6 +148,7 @@
 		AA46364C2456B5D1002CFFC0 /* DrinkWater */ = {
 			isa = PBXGroup;
 			children = (
+				AA9AC795248146AD00422DC1 /* Managers */,
 				AACFDF8B246BB6F1007299CD /* Model */,
 				AA9E091E245D3F93004E2CE6 /* Utilities */,
 				AA4636722457447E002CFFC0 /* Extensions */,
@@ -210,11 +215,21 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		AA9AC795248146AD00422DC1 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				AA9AC796248146C100422DC1 /* PersistenceManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
 		AA9E091E245D3F93004E2CE6 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
 				AAA5A9582460495C001237D0 /* DWColors.swift */,
 				AA20DFC2247E8C420037A649 /* StatsType.swift */,
+				AA9AC7932481455A00422DC1 /* Units.swift */,
+				AA9AC798248147C900422DC1 /* DWErrors.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -231,7 +246,6 @@
 		AAF4BFAA2475671600185F04 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				AAF4BFA22475509F00185F04 /* DWUserInfoHeader.swift */,
 				AAF4BFAF2476B61300185F04 /* DWSexItemVC.swift */,
 				AAF4BFB12476CAF300185F04 /* DWAgeItemVC.swift */,
 				AA5E30622477FE8E006F717F /* DWWeightItemVC.swift */,
@@ -371,9 +385,9 @@
 			files = (
 				AA20DFC3247E8C420037A649 /* StatsType.swift in Sources */,
 				AA46367124574474002CFFC0 /* Date+Ext.swift in Sources */,
+				AA9AC797248146C100422DC1 /* PersistenceManager.swift in Sources */,
 				AA20DFC7247EA0A90037A649 /* DWUnitsItemVC.swift in Sources */,
 				AA5E30652478018D006F717F /* DWGoalItemVC.swift in Sources */,
-				AAF4BFA32475509F00185F04 /* DWUserInfoHeader.swift in Sources */,
 				AA4636682457099B002CFFC0 /* DWButton.swift in Sources */,
 				AAA5A9592460495C001237D0 /* DWColors.swift in Sources */,
 				AACFDF9B246E8901007299CD /* ChartStatsVC.swift in Sources */,
@@ -398,11 +412,13 @@
 				AAC8315724643665003A0C9F /* ActionButtonItem.swift in Sources */,
 				AA5E30632477FE8E006F717F /* DWWeightItemVC.swift in Sources */,
 				AAA5A95B24618E53001237D0 /* Int+Ext.swift in Sources */,
+				AA9AC799248147C900422DC1 /* DWErrors.swift in Sources */,
 				AA46367624582B1E002CFFC0 /* UIButton+Ext.swift in Sources */,
 				AA4636502456B5D1002CFFC0 /* SceneDelegate.swift in Sources */,
 				AACFDF95246D9774007299CD /* UIView+Ext.swift in Sources */,
 				AA46367824583278002CFFC0 /* Helper.swift in Sources */,
 				AA20DFC1247E771E0037A649 /* StatsVC.swift in Sources */,
+				AA9AC7942481455A00422DC1 /* Units.swift in Sources */,
 				AA20DFCB247EA3350037A649 /* DWGlassSizeItemVC.swift in Sources */,
 				AACFDF97246D97CF007299CD /* UIImage+Ext.swift in Sources */,
 				AAF4BFB22476CAF300185F04 /* DWAgeItemVC.swift in Sources */,

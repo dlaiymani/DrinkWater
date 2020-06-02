@@ -11,15 +11,14 @@ import UIKit
 class DWSexItemVC: UIViewController {
     
     let sexLabel = DWTitleLabel(textAlignment: .left, fontSize: 15)
-    let maleButton = DWButton(backgroundColor: DWColors.greenColor, title: "M")
-    let femaleButton = DWButton(backgroundColor: DWColors.whiteColor, title: "F")
+    let maleButton = DWButton(backgroundColor: DWColors.whiteColor, title: "M")
+    let femaleButton = DWButton(backgroundColor: DWColors.greenColor, title: "F")
     let stackView = UIStackView()
     
-    var user: User!
+    var sex = "F"
     
-    init(user: User) {
+    init() {
         super.init(nibName: nil, bundle: nil)
-        self.user = user
     }
     
     required init?(coder: NSCoder) {
@@ -41,10 +40,27 @@ class DWSexItemVC: UIViewController {
     }
     
     private func configureSexButtons() {
-        femaleButton.set(textColor: DWColors.grayColor)
-        
+        maleButton.set(textColor: DWColors.grayColor)
+        femaleButton.addTarget(self, action: #selector(femaleTapped), for: .touchUpInside)
+        maleButton.addTarget(self, action: #selector(maleTapped), for: .touchUpInside)
     }
     
+    @objc private func femaleTapped() {
+        femaleButton.backgroundColor = UIColor(cgColor: DWColors.greenColor)
+        femaleButton.set(textColor: DWColors.whiteColor)
+        maleButton.backgroundColor = UIColor(cgColor: DWColors.whiteColor)
+        maleButton.set(textColor: DWColors.grayColor)
+        sex = "F"
+    }
+    
+    @objc private func maleTapped() {
+        
+        maleButton.backgroundColor = UIColor(cgColor: DWColors.greenColor)
+        maleButton.set(textColor: DWColors.whiteColor)
+        femaleButton.backgroundColor = UIColor(cgColor: DWColors.whiteColor)
+        femaleButton.set(textColor: DWColors.grayColor)
+        sex = "M"
+    }
     
     private func layoutUI() {
         view.addSubview(sexLabel)
