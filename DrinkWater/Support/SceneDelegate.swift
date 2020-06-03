@@ -21,10 +21,40 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
-        window?.rootViewController = createNavVC()
-        window?.makeKeyAndVisible()
+        
+        let alwaysFirstLaunch = FirstLaunch.alwaysFirst()
+        if alwaysFirstLaunch.isFirstLaunch {
+            window?.rootViewController = createOnBoardingVC()
+            window?.makeKeyAndVisible()
+        } else {
+            window?.rootViewController = createNavVC()
+            window?.makeKeyAndVisible()
+        }
     }
     
+    
+    func createOnBoardingVC() -> UIViewController {
+        let onboardingVC = OnBoardingVC()
+        return onboardingVC
+    }
+    
+    
+    func createUserInfoVC() -> UINavigationController {
+        let destVC = UserInfoVC()
+        let navController = UINavigationController(rootViewController: destVC)
+        
+        return navController
+        
+    }
+    
+    func createAlertVC() -> UIViewController {
+        let alertVC = DWAlertVC(title: "Welcome to DrinkWater", message: "Let's get to know each other", buttonTitle: "Next")
+        alertVC.modalPresentationStyle = .overFullScreen
+        alertVC.modalTransitionStyle = .crossDissolve
+        
+        return alertVC
+        
+    }
     
     func createNavVC() -> UINavigationController {
         let drinkVC = DrinkVC()

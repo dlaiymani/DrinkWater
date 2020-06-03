@@ -34,10 +34,15 @@
 		AA9AC7942481455A00422DC1 /* Units.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9AC7932481455A00422DC1 /* Units.swift */; };
 		AA9AC797248146C100422DC1 /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9AC796248146C100422DC1 /* PersistenceManager.swift */; };
 		AA9AC799248147C900422DC1 /* DWErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9AC798248147C900422DC1 /* DWErrors.swift */; };
+		AA9AC79B24867CEF00422DC1 /* FirstLaunch.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9AC79A24867CEF00422DC1 /* FirstLaunch.swift */; };
+		AA9AC79D24867E4600422DC1 /* DWAlertVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9AC79C24867E4600422DC1 /* DWAlertVC.swift */; };
+		AA9AC79F24867F7F00422DC1 /* UIViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9AC79E24867F7F00422DC1 /* UIViewController+Ext.swift */; };
+		AA9AC7A1248698D300422DC1 /* OnBoardingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9AC7A0248698D300422DC1 /* OnBoardingVC.swift */; };
 		AA9E0919245BEB56004E2CE6 /* DWBoldLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9E0918245BEB56004E2CE6 /* DWBoldLabel.swift */; };
 		AA9E091D245C2E16004E2CE6 /* CGFloat+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9E091C245C2E16004E2CE6 /* CGFloat+Ext.swift */; };
 		AAA5A9592460495C001237D0 /* DWColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA5A9582460495C001237D0 /* DWColors.swift */; };
 		AAA5A95B24618E53001237D0 /* Int+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA5A95A24618E53001237D0 /* Int+Ext.swift */; };
+		AAB7DF172487DBB600879B2C /* DWUnderlinedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB7DF162487DBB600879B2C /* DWUnderlinedLabel.swift */; };
 		AAC1B56C2462A75E00AF04ED /* DWActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC1B56B2462A75E00AF04ED /* DWActivityView.swift */; };
 		AAC1B56E2462ACCF00AF04ED /* DWDayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC1B56D2462ACCF00AF04ED /* DWDayView.swift */; };
 		AAC8315324642FA0003A0C9F /* LCTextLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC8315224642FA0003A0C9F /* LCTextLayer.swift */; };
@@ -84,10 +89,15 @@
 		AA9AC7932481455A00422DC1 /* Units.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Units.swift; sourceTree = "<group>"; };
 		AA9AC796248146C100422DC1 /* PersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceManager.swift; sourceTree = "<group>"; };
 		AA9AC798248147C900422DC1 /* DWErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DWErrors.swift; sourceTree = "<group>"; };
+		AA9AC79A24867CEF00422DC1 /* FirstLaunch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstLaunch.swift; sourceTree = "<group>"; };
+		AA9AC79C24867E4600422DC1 /* DWAlertVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DWAlertVC.swift; sourceTree = "<group>"; };
+		AA9AC79E24867F7F00422DC1 /* UIViewController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ext.swift"; sourceTree = "<group>"; };
+		AA9AC7A0248698D300422DC1 /* OnBoardingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingVC.swift; sourceTree = "<group>"; };
 		AA9E0918245BEB56004E2CE6 /* DWBoldLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DWBoldLabel.swift; sourceTree = "<group>"; };
 		AA9E091C245C2E16004E2CE6 /* CGFloat+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGFloat+Ext.swift"; sourceTree = "<group>"; };
 		AAA5A9582460495C001237D0 /* DWColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DWColors.swift; sourceTree = "<group>"; };
 		AAA5A95A24618E53001237D0 /* Int+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Ext.swift"; sourceTree = "<group>"; };
+		AAB7DF162487DBB600879B2C /* DWUnderlinedLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DWUnderlinedLabel.swift; sourceTree = "<group>"; };
 		AAC1B56B2462A75E00AF04ED /* DWActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DWActivityView.swift; sourceTree = "<group>"; };
 		AAC1B56D2462ACCF00AF04ED /* DWDayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DWDayView.swift; sourceTree = "<group>"; };
 		AAC8315224642FA0003A0C9F /* LCTextLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCTextLayer.swift; sourceTree = "<group>"; };
@@ -173,6 +183,7 @@
 				AAC1B56B2462A75E00AF04ED /* DWActivityView.swift */,
 				AAC1B56D2462ACCF00AF04ED /* DWDayView.swift */,
 				AAF4BFA8247561AE00185F04 /* DWItemInfoView.swift */,
+				AAB7DF162487DBB600879B2C /* DWUnderlinedLabel.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -184,6 +195,7 @@
 				AACFDF9A246E8901007299CD /* ChartStatsVC.swift */,
 				AAF4BFA024754E0D00185F04 /* UserInfoVC.swift */,
 				AA20DFC4247E9F0A0037A649 /* SettingsInfoVC.swift */,
+				AA9AC7A0248698D300422DC1 /* OnBoardingVC.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -195,6 +207,7 @@
 				AA46364F2456B5D1002CFFC0 /* SceneDelegate.swift */,
 				AA4636562456B5D3002CFFC0 /* Assets.xcassets */,
 				AA4636582456B5D3002CFFC0 /* LaunchScreen.storyboard */,
+				AA9AC79A24867CEF00422DC1 /* FirstLaunch.swift */,
 			);
 			path = Support;
 			sourceTree = "<group>";
@@ -211,6 +224,7 @@
 				AAA5A95A24618E53001237D0 /* Int+Ext.swift */,
 				AACFDF94246D9774007299CD /* UIView+Ext.swift */,
 				AACFDF96246D97CF007299CD /* UIImage+Ext.swift */,
+				AA9AC79E24867F7F00422DC1 /* UIViewController+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -257,6 +271,7 @@
 				AA20DFC6247EA0A90037A649 /* DWUnitsItemVC.swift */,
 				AA20DFC8247EA1AF0037A649 /* DWNotifsItemVC.swift */,
 				AA20DFCA247EA3350037A649 /* DWGlassSizeItemVC.swift */,
+				AA9AC79C24867E4600422DC1 /* DWAlertVC.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -389,15 +404,19 @@
 				AA20DFC7247EA0A90037A649 /* DWUnitsItemVC.swift in Sources */,
 				AA5E30652478018D006F717F /* DWGoalItemVC.swift in Sources */,
 				AA4636682457099B002CFFC0 /* DWButton.swift in Sources */,
+				AA9AC79B24867CEF00422DC1 /* FirstLaunch.swift in Sources */,
 				AAA5A9592460495C001237D0 /* DWColors.swift in Sources */,
 				AACFDF9B246E8901007299CD /* ChartStatsVC.swift in Sources */,
+				AA9AC7A1248698D300422DC1 /* OnBoardingVC.swift in Sources */,
 				AA9E091D245C2E16004E2CE6 /* CGFloat+Ext.swift in Sources */,
 				AA4636622456FC2C002CFFC0 /* DrinkVC.swift in Sources */,
 				AAC1B56C2462A75E00AF04ED /* DWActivityView.swift in Sources */,
 				AAC8315324642FA0003A0C9F /* LCTextLayer.swift in Sources */,
 				AAF4BFA52475533F00185F04 /* User.swift in Sources */,
+				AA9AC79D24867E4600422DC1 /* DWAlertVC.swift in Sources */,
 				AA46366D24570D96002CFFC0 /* DWTitleLabel.swift in Sources */,
 				AA9E0919245BEB56004E2CE6 /* DWBoldLabel.swift in Sources */,
+				AA9AC79F24867F7F00422DC1 /* UIViewController+Ext.swift in Sources */,
 				AA20DFC5247E9F0A0037A649 /* SettingsInfoVC.swift in Sources */,
 				AAC1B56E2462ACCF00AF04ED /* DWDayView.swift in Sources */,
 				AAF4BFA9247561AE00185F04 /* DWItemInfoView.swift in Sources */,
@@ -417,6 +436,7 @@
 				AA4636502456B5D1002CFFC0 /* SceneDelegate.swift in Sources */,
 				AACFDF95246D9774007299CD /* UIView+Ext.swift in Sources */,
 				AA46367824583278002CFFC0 /* Helper.swift in Sources */,
+				AAB7DF172487DBB600879B2C /* DWUnderlinedLabel.swift in Sources */,
 				AA20DFC1247E771E0037A649 /* StatsVC.swift in Sources */,
 				AA9AC7942481455A00422DC1 /* Units.swift in Sources */,
 				AA20DFCB247EA3350037A649 /* DWGlassSizeItemVC.swift in Sources */,

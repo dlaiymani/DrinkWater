@@ -34,8 +34,10 @@ enum PersistenceManager {
                 }
                 
                 // profile alredy exists -> update
-                print("Profile already exist -> update: \(existingProfile.nbOfNotifs)")
                 
+                print("Profile already exist -> update: \(existingProfile.weight)")
+                completed(save(profile: profile)) // profile does not exist -> add
+
             case .failure(let error):
                 completed(error)
             }

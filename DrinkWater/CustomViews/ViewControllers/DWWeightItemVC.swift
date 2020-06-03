@@ -18,7 +18,7 @@ class DWWeightItemVC: UIViewController {
         
     lazy var pickerData: [Int] = {
         var weights = [Int]()
-        for i in 20...200 {
+        for i in 0...200 {
             weights.append(i)
         }
         return weights
@@ -50,7 +50,7 @@ class DWWeightItemVC: UIViewController {
 
         weightPicker.delegate = self
         weightPicker.dataSource = self
-        weightPicker.selectRow(40, inComponent: 0, animated: false)
+        weightPicker.selectRow(70, inComponent: 0, animated: false)
 
     }
     

@@ -26,6 +26,8 @@ class SettingsInfoVC: UIViewController {
         
     var viewSize: CGFloat = 0
     
+    var onBoarding = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -45,7 +47,7 @@ class SettingsInfoVC: UIViewController {
         self.navigationController?.navigationBar.tintColor = UIColor(cgColor: DWColors.greenColor)
         self.navigationController?.navigationBar.barTintColor = .black
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
-        self.title = "Setings"
+        self.title = "Settings"
 
     }
     
@@ -93,9 +95,30 @@ class SettingsInfoVC: UIViewController {
             stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
         ])
         
+        
+        if onBoarding {
+            let titleLabel = DWUnderlinedLabel(textAlignment: .center, fontSize: 20, text: "Personal Settings")
+            
+
+            view.addSubview(titleLabel)
+            stackView.addArrangedSubview(titleLabel)
+        }
         stackView.addArrangedSubview(itemViewUnits)
         stackView.addArrangedSubview(itemViewNotifications)
         stackView.addArrangedSubview(itemViewGlassSizes)
+        
+//        if onBoarding {
+//            var swipeUpLabel = DWTitleLabel(textAlignment: .center, fontSize: 15)
+//          //  view.addSubview(swipeUpLabel)
+//            swipeUpLabel.text = "Swipe left to begin"
+//
+////            upSwipe = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipeUp))
+////            upSwipe.direction = .up
+////
+////            view.addGestureRecognizer(upSwipe)
+//            stackView.addArrangedSubview(swipeUpLabel)
+//        }
+        
        }
     
     

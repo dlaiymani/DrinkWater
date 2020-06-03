@@ -31,15 +31,39 @@ class DrinkVC: UIViewController {
     var percentageGoal = 0.0
         
     var upSwipe: UISwipeGestureRecognizer!
+    
+    var user: User!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .black
-        
+        getUserProfile()
         configureNavBar()
         layoutUI()
         configureUIElements()
         setupButtons()
+    }
+    
+    
+    func getUserProfile() {
+        PersistenceManager.retreiveProfile { (result) in
+            switch result {
+            case .success(let existingProfile):
+                guard let existingProfile = existingProfile else {
+                    self.user = User(yob: 1980, weight: 70, sex: "F", preferredDrinkSize: [10, 50, 100], dailyGoal: 1200, units: .cl, nbOfNotifs: 3)
+                    return
+                }
+                
+                self.user = existingProfile
+                
+                
+            case .failure(let error):
+                print(error.rawValue)
+            }
+        }
+        
+        print(user.weight)
+        
     }
     
 

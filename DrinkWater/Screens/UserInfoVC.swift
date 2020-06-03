@@ -35,6 +35,8 @@ class UserInfoVC: UIViewController {
     var viewSize: CGFloat = 0
     
     var user: User?
+    
+    var onBoarding = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -106,6 +108,13 @@ class UserInfoVC: UIViewController {
             stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
             stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),        
         ])
+        
+        if onBoarding {
+            let titleLabel = DWUnderlinedLabel(textAlignment: .center, fontSize: 20, text: "Personal Information")
+            
+            view.addSubview(titleLabel)
+            stackView.addArrangedSubview(titleLabel)
+        }
         
         stackView.addArrangedSubview(itemViewSex)
         stackView.addArrangedSubview(itemViewAge)
