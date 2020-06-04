@@ -14,7 +14,7 @@ struct User: Codable {
     var sex: String
     var preferredDrinkSize: [Int]
     var dailyGoal: Double
-    var units: Units
+    var units: DWUnits
     var nbOfNotifs: Int
 }
 

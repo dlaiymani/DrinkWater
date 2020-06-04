@@ -41,7 +41,7 @@ class UserInfoVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        user = User(yob: 25, weight: 80, sex: "M", preferredDrinkSize: [25, 50, 75], dailyGoal: 2000, units: Units.cl, nbOfNotifs: 3)
+        user = User(yob: 25, weight: 80, sex: "M", preferredDrinkSize: [25, 50, 75], dailyGoal: 2000, units: DWUnits.cl, nbOfNotifs: 3)
 
         configureViewController()
         layoutUI()

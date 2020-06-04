@@ -15,6 +15,8 @@ class DWUnitsItemVC: UIViewController {
     let ozButton = DWButton(backgroundColor: DWColors.whiteColor, title: "oz")
     let stackView = UIStackView()
     
+    var unit: DWUnits = .cl
+    
     
     init() {
         super.init(nibName: nil, bundle: nil)
@@ -40,9 +42,27 @@ class DWUnitsItemVC: UIViewController {
     
     private func configureSexButtons() {
         ozButton.set(textColor: DWColors.grayColor)
-        
+        ozButton.addTarget(self, action: #selector(ozTapped), for: .touchUpInside)
+        clButton.addTarget(self, action: #selector(clTapped), for: .touchUpInside)
     }
     
+    
+    @objc private func ozTapped() {
+        ozButton.backgroundColor = UIColor(cgColor: DWColors.greenColor)
+        ozButton.set(textColor: DWColors.whiteColor)
+        clButton.backgroundColor = UIColor(cgColor: DWColors.whiteColor)
+        clButton.set(textColor: DWColors.grayColor)
+        unit = .oz
+    }
+    
+    @objc private func clTapped() {
+        
+        clButton.backgroundColor = UIColor(cgColor: DWColors.greenColor)
+        clButton.set(textColor: DWColors.whiteColor)
+        ozButton.backgroundColor = UIColor(cgColor: DWColors.whiteColor)
+        ozButton.set(textColor: DWColors.grayColor)
+        unit = .cl
+    }
     
     private func layoutUI() {
         view.addSubview(unitsLabel)

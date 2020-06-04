@@ -17,8 +17,9 @@ class DWNotifsItemVC: UIViewController {
     
     let stackView = UIStackView()
     
-    let goal = 3
     private let buttonsSize: CGFloat = 25
+    
+    var nbNotifs = 3
     
     var user: User!
     
@@ -53,6 +54,46 @@ class DWNotifsItemVC: UIViewController {
         
         plusButton.set(cornerRadius: buttonsSize/2)
         minusButton.set(cornerRadius: buttonsSize/2)
+        
+        plusButton.addTarget(self, action: #selector(plusButtonTapped), for: .touchUpInside)
+        minusButton.addTarget(self, action: #selector(minusButtonTapped), for: .touchUpInside)
+    }
+    
+    
+    
+    @objc private func plusButtonTapped() {
+        switch nbNotifs {
+        case 0:
+            nbNotifs = 2
+        case 2:
+            nbNotifs = 3
+        case 3:
+            nbNotifs = 5
+        case 5:
+            nbNotifs = 5
+        default:
+            break
+        }
+        
+        nbNotifsLabel.text = "\(nbNotifs)"
+    }
+    
+    
+    @objc private func minusButtonTapped() {
+        switch nbNotifs {
+        case 0:
+            nbNotifs = 0
+        case 2:
+            nbNotifs = 0
+        case 3:
+            nbNotifs = 2
+        case 5:
+            nbNotifs = 3
+        default:
+            break
+        }
+        nbNotifsLabel.text = "\(nbNotifs)"
+
     }
     
     

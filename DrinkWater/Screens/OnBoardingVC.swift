@@ -11,6 +11,9 @@ import UIKit
 class OnBoardingVC: UIViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
     var pageController: UIPageViewController!
     var controllers = [UIViewController]()
+    
+    let profileVC = UserInfoVC()
+    let settingsVC = SettingsInfoVC()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,22 +32,49 @@ class OnBoardingVC: UIViewController, UIPageViewControllerDataSource, UIPageView
         
         let welcomeVC = DWAlertVC(title: "Welcome to DrinkWater", message: "Let's get to know each other", buttonTitle: "Logo")
         controllers.append(welcomeVC)
-        let profileVC = UserInfoVC()
+        
         profileVC.onBoarding = true
         controllers.append(profileVC)
-        let settingsVC = SettingsInfoVC()
         settingsVC.onBoarding = true
         controllers.append(settingsVC)
+        let endVC = DWAlertVC(title: "Everything's fine", message: "Let's hydrate now!", buttonTitle: "Start Now")
+        controllers.append(endVC)
+        endVC.actionButton.addTarget(self, action: #selector(saveAndStart), for: .touchUpInside)
 
         pageController.setViewControllers([controllers[0]], direction: .forward, animated: true)
     }
+    
+    
+    
+    @objc func saveAndStart() {
+        dismiss(animated: true, completion: nil)
+        let destVC = DrinkVC()
+        let navController = UINavigationController(rootViewController: destVC)
+        navController.navigationBar.barTintColor = .black
+        
+        UIView.transition(from: (UIApplication.shared.windows.first?.rootViewController!.view)!, to: navController.view, duration: 0.6, options: [.transitionFlipFromRight], completion: {
+            _ in            
+        })
+    }
 
     
-//    func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
-//        print("yop")
-//
-//
-//    }
+    
+    func saveProfile() {
+        
+        let glassSizes = settingsVC.glassSizeItemVC.selectedGlassSizes.map { $0.rawValue }
+        
+        let user = User(yob: profileVC.ageItemVC.yob, weight: Double(profileVC.weightItemVC.weight), sex: profileVC.sexItemVC.sex, preferredDrinkSize: glassSizes, dailyGoal: Double(profileVC.goalItemVC.goal), units: settingsVC.unitsItemVC.unit, nbOfNotifs: settingsVC.notifsItemVC.nbNotifs)
+        
+        PersistenceManager.updateWith(profile: user) { [weak self] (error) in
+            guard let self = self else { return }
+            guard let error = error else { return }
+            print(error.rawValue)
+        }
+        
+        dismiss(animated: true)
+    }
+    
+
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         if let index = controllers.firstIndex(of: viewController) {
@@ -62,23 +92,9 @@ class OnBoardingVC: UIViewController, UIPageViewControllerDataSource, UIPageView
 
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
         if let index = controllers.firstIndex(of: viewController) {
-            print(index)
             if index < controllers.count - 1 {
                 return controllers[index+1]
             } else {
-                print("ya")
-                dismiss(animated: true, completion: nil)
-                let destVC = DrinkVC()
-                let navController = UINavigationController(rootViewController: destVC)
-                navController.navigationBar.barTintColor = .black
-
-                UIView.transition(from: (UIApplication.shared.windows.first?.rootViewController!.view)!, to: navController.view, duration: 0.6, options: [.transitionFlipFromRight], completion: {
-                    _ in
-//                    UIApplication.shared.windows.first?.rootViewController = navController
-//                    UIApplication.shared.windows.first?.makeKeyAndVisible()
-
-                })
-
                 return nil
             }
         }

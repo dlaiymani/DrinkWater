@@ -9,7 +9,7 @@
 import Foundation
 
 
-enum Units: Int, Codable {
+enum DWUnits: Int, Codable {
     case cl
     case oz
 }

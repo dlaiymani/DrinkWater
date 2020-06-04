@@ -20,6 +20,10 @@ class SettingsInfoVC: UIViewController {
     let itemViewGlassSizes = UIView()
     var itemViews: [UIView] = []
     
+    var unitsItemVC: DWUnitsItemVC!
+    var notifsItemVC: DWNotifsItemVC!
+    var glassSizeItemVC: DWGlassSizeItemVC!
+    
     let stackView = UIStackView()
 
     let padding: CGFloat = 20
@@ -54,11 +58,11 @@ class SettingsInfoVC: UIViewController {
     
     func configureUIElements() {
         
-        let unitsItemVC = DWUnitsItemVC()
+        unitsItemVC = DWUnitsItemVC()
         self.add(childVC: unitsItemVC, to: self.itemViewUnits)
-        let notifsItemVC = DWNotifsItemVC()
+        notifsItemVC = DWNotifsItemVC()
         self.add(childVC: notifsItemVC, to: self.itemViewNotifications)
-        let glassSizeItemVC = DWGlassSizeItemVC()
+        glassSizeItemVC = DWGlassSizeItemVC()
         self.add(childVC: glassSizeItemVC, to: self.itemViewGlassSizes)
        
     }
@@ -86,10 +90,9 @@ class SettingsInfoVC: UIViewController {
            
         stackView.translatesAutoresizingMaskIntoConstraints = false
            
-        
-        
         NSLayoutConstraint.activate([
             stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: padding),
+
             stackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -padding),
             stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
             stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
@@ -99,27 +102,15 @@ class SettingsInfoVC: UIViewController {
         if onBoarding {
             let titleLabel = DWUnderlinedLabel(textAlignment: .center, fontSize: 20, text: "Personal Settings")
             
-
             view.addSubview(titleLabel)
+            
             stackView.addArrangedSubview(titleLabel)
         }
         stackView.addArrangedSubview(itemViewUnits)
         stackView.addArrangedSubview(itemViewNotifications)
         stackView.addArrangedSubview(itemViewGlassSizes)
         
-//        if onBoarding {
-//            var swipeUpLabel = DWTitleLabel(textAlignment: .center, fontSize: 15)
-//          //  view.addSubview(swipeUpLabel)
-//            swipeUpLabel.text = "Swipe left to begin"
-//
-////            upSwipe = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipeUp))
-////            upSwipe.direction = .up
-////
-////            view.addGestureRecognizer(upSwipe)
-//            stackView.addArrangedSubview(swipeUpLabel)
-//        }
-        
-       }
+    }
     
     
     func add(childVC: UIViewController, to containerView: UIView) {

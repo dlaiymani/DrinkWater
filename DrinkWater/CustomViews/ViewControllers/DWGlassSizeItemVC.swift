@@ -12,14 +12,16 @@ import UIKit
 class DWGlassSizeItemVC: UIViewController {
     
     let glassSizeLabel = DWTitleLabel(textAlignment: .left, fontSize: 15)
-    let sButton = DWButton(backgroundColor: DWColors.greenColor, title: "12 cl")
-    let mButton = DWButton(backgroundColor: DWColors.whiteColor, title: "25 cl")
-    let lButton = DWButton(backgroundColor: DWColors.greenColor, title: "33 cl")
-    let xlButton = DWButton(backgroundColor: DWColors.whiteColor, title: "50 cl")
-    let xxlButton = DWButton(backgroundColor: DWColors.greenColor, title: "100 cl")
+    let sButton = DWButton(backgroundColor: DWColors.greenColor, title: "\(DWGlassSizes.s.rawValue) cl")
+    let mButton = DWButton(backgroundColor: DWColors.whiteColor, title: "\(DWGlassSizes.m.rawValue) cl")
+    let lButton = DWButton(backgroundColor: DWColors.greenColor, title: "\(DWGlassSizes.l.rawValue) cl")
+    let xlButton = DWButton(backgroundColor: DWColors.whiteColor, title: "\(DWGlassSizes.xl.rawValue) cl")
+    let xxlButton = DWButton(backgroundColor: DWColors.greenColor, title: "\(DWGlassSizes.xxl.rawValue) cl")
 
     let stackViewOne = UIStackView()
     let stackViewTwo = UIStackView()
+        
+    var selectedGlassSizes: [DWGlassSizes] = [.s, .l, .xxl]
 
     
     init() {
@@ -47,7 +49,52 @@ class DWGlassSizeItemVC: UIViewController {
     private func configureSexButtons() {
         mButton.set(textColor: DWColors.grayColor)
         xlButton.set(textColor: DWColors.grayColor)
-
+        
+        sButton.tag = 0
+        sButton.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
+        mButton.tag = 1
+        mButton.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
+        lButton.tag = 2
+        lButton.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
+        xlButton.tag = 3
+        xlButton.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
+        xxlButton.tag = 4
+        xxlButton.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
+    }
+    
+    
+    
+    @objc func buttonTapped(sender: DWButton) {
+        let size: DWGlassSizes
+        
+        switch sender.tag {
+        case 0:
+            size = .s
+        case 1:
+            size = .m
+        case 2:
+            size = .l
+        case 3:
+            size = .xl
+        case 4:
+            size = .xxl
+        default:
+            size = .s
+        }
+        
+        if selectedGlassSizes.contains(size) { // s is already selected
+            sender.set(textColor: DWColors.grayColor)
+            sender.backgroundColor = .white
+            selectedGlassSizes.firstIndex(of: size).map { selectedGlassSizes.remove(at: $0) }
+            print(selectedGlassSizes)
+        } else {
+            if selectedGlassSizes.count < 3 { // else already 3 buttons selected
+                sender.set(textColor: DWColors.whiteColor)
+                sender.backgroundColor = UIColor(cgColor: DWColors.greenColor)
+                selectedGlassSizes.append(size)
+                print(selectedGlassSizes)
+            }
+        }
     }
     
     
