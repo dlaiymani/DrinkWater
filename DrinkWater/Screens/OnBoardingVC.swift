@@ -47,6 +47,7 @@ class OnBoardingVC: UIViewController, UIPageViewControllerDataSource, UIPageView
     
     
     @objc func saveAndStart() {
+        saveProfile()
         dismiss(animated: true, completion: nil)
         let destVC = DrinkVC()
         let navController = UINavigationController(rootViewController: destVC)

@@ -17,8 +17,12 @@ class DWSexItemVC: UIViewController {
     
     var sex = "F"
     
-    init() {
+    var user: User!
+    
+    init(profile: User) {
         super.init(nibName: nil, bundle: nil)
+        user = profile
+        sex = user.sex
     }
     
     required init?(coder: NSCoder) {
@@ -40,6 +44,14 @@ class DWSexItemVC: UIViewController {
     }
     
     private func configureSexButtons() {
+        
+        if sex == "F" {
+            femaleTapped()
+        } else {
+            maleTapped()
+        }
+        
+        
         maleButton.set(textColor: DWColors.grayColor)
         femaleButton.addTarget(self, action: #selector(femaleTapped), for: .touchUpInside)
         maleButton.addTarget(self, action: #selector(maleTapped), for: .touchUpInside)

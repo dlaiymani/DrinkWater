@@ -17,11 +17,14 @@ class DWGoalItemVC: UIViewController {
     
     let stackView = UIStackView()
     
-    var goal = 1200
+    var goal = 1200.0
+    var user: User!
     private let buttonsSize: CGFloat = 25
     
-    init() {
+    init(profile: User) {
         super.init(nibName: nil, bundle: nil)
+        user = profile
+        goal = user.dailyGoal
     }
     
     required init?(coder: NSCoder) {

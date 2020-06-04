@@ -41,12 +41,23 @@ class UserInfoVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        user = User(yob: 25, weight: 80, sex: "M", preferredDrinkSize: [25, 50, 75], dailyGoal: 2000, units: DWUnits.cl, nbOfNotifs: 3)
+        getExistingProfile()
 
         configureViewController()
         layoutUI()
         configureUIElements(with: user!)
         configureStackView()
+    }
+    
+    func getExistingProfile() {
+            PersistenceManager.retreiveProfile { (result) in
+                switch result {
+                case .success(let profile):
+                    self.user = profile
+                case .failure(let error):
+                    print(error)
+                }
+            }
     }
     
     
@@ -66,13 +77,13 @@ class UserInfoVC: UIViewController {
     
     func configureUIElements(with user: User) {
         
-        sexItemVC = DWSexItemVC()
+        sexItemVC = DWSexItemVC(profile: user)
         self.add(childVC: sexItemVC, to: self.itemViewSex)
-        ageItemVC = DWAgeItemVC()
+        ageItemVC = DWAgeItemVC(profile: user)
         self.add(childVC: ageItemVC, to: self.itemViewAge)
-        weightItemVC = DWWeightItemVC()
+        weightItemVC = DWWeightItemVC(profile: user)
         self.add(childVC: weightItemVC, to: self.itemViewWeight)
-        goalItemVC = DWGoalItemVC()
+        goalItemVC = DWGoalItemVC(profile: user)
         self.add(childVC: goalItemVC, to: self.itemViewGoal)
     }
         

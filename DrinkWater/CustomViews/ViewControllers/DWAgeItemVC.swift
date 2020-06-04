@@ -24,9 +24,12 @@ class DWAgeItemVC: UIViewController {
     }()
     
     var yob = 1970
+    var user: User!
     
-    init() {
+    init(profile: User) {
         super.init(nibName: nil, bundle: nil)
+        self.user = profile
+        yob = user.yob
     }
     
     required init?(coder: NSCoder) {
@@ -50,7 +53,7 @@ class DWAgeItemVC: UIViewController {
 
         agePicker.delegate = self
         agePicker.dataSource = self
-        agePicker.selectRow(70, inComponent: 0, animated: false)
+        agePicker.selectRow(yob-1900, inComponent: 0, animated: false)
 
     }
     

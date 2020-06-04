@@ -14,7 +14,8 @@ class DWWeightItemVC: UIViewController {
     let weightPicker = UIPickerView()
     let unitLabel = DWTitleLabel(textAlignment: .left, fontSize: 15)
     
-    var weight = 40
+    var weight = 70.0
+    var user: User!
         
     lazy var pickerData: [Int] = {
         var weights = [Int]()
@@ -25,8 +26,10 @@ class DWWeightItemVC: UIViewController {
     }()
     
     
-    init() {
+    init(profile: User) {
         super.init(nibName: nil, bundle: nil)
+        user = profile
+        weight = user.weight
     }
     
     required init?(coder: NSCoder) {
@@ -50,7 +53,7 @@ class DWWeightItemVC: UIViewController {
 
         weightPicker.delegate = self
         weightPicker.dataSource = self
-        weightPicker.selectRow(70, inComponent: 0, animated: false)
+        weightPicker.selectRow(Int(weight), inComponent: 0, animated: false)
 
     }
     
@@ -110,7 +113,7 @@ extension DWWeightItemVC: UIPickerViewDelegate {
 
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         pickerView.reloadAllComponents()
-        weight = pickerData[row]
+        weight = Double(pickerData[row])
     }
     
 }
