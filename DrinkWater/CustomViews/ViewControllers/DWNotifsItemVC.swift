@@ -23,8 +23,10 @@ class DWNotifsItemVC: UIViewController {
     
     var user: User!
     
-    init() {
+    init(profile: User) {
         super.init(nibName: nil, bundle: nil)
+        self.user = profile
+        nbNotifs = user.nbOfNotifs
     }
     
     required init?(coder: NSCoder) {
@@ -99,7 +101,7 @@ class DWNotifsItemVC: UIViewController {
     
     private func configureGoalLabel() {
         
-        nbNotifsLabel.text = "3"
+        nbNotifsLabel.text = "\(nbNotifs)"
 
     }
     

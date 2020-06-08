@@ -12,7 +12,7 @@ struct User: Codable {
     var yob: Int
     var weight: Double
     var sex: String
-    var preferredDrinkSize: [Int]
+    var preferredDrinkSize: PreferedSizes
     var dailyGoal: Double
     var units: DWUnits
     var nbOfNotifs: Int

@@ -21,11 +21,28 @@ class DWGlassSizeItemVC: UIViewController {
     let stackViewOne = UIStackView()
     let stackViewTwo = UIStackView()
         
-    var selectedGlassSizes: [DWGlassSizes] = [.s, .l, .xxl]
+    //var selectedGlassSizes: [DWGlassSizes] = [.s, .l, .xxl]
+    var selectedGlassSizes = [Double]()
+
+    var user: User!
+    var unit: DWUnits!
+    var unitString = "cl"
 
     
-    init() {
+    init(profile: User) {
         super.init(nibName: nil, bundle: nil)
+        self.user = profile
+        self.unit = user.units
+        if self.unit == DWUnits.oz {
+            self.unitString = "oz"
+        }
+        
+        selectedGlassSizes.removeAll()
+        selectedGlassSizes = self.user.preferredDrinkSize.convertFrom(unit: self.unit)
+//        selectedGlassSizes.removeAll()
+//        for s in user.preferredDrinkSize {
+//            selectedGlassSizes.append(DWGlassSizes(rawValue: s)!)
+//        }
     }
     
     required init?(coder: NSCoder) {
@@ -35,7 +52,7 @@ class DWGlassSizeItemVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureBackgroundView()
-        configureSexButtons()
+        configureSizeButtons()
         configureStackView()
         layoutUI()
     }
@@ -46,23 +63,62 @@ class DWGlassSizeItemVC: UIViewController {
         view.backgroundColor = UIColor(cgColor: DWColors.lightBlackColor)
     }
     
-    private func configureSexButtons() {
-        mButton.set(textColor: DWColors.grayColor)
-        xlButton.set(textColor: DWColors.grayColor)
+    
+    private func configureSizeButtons() {
+        
         
         sButton.tag = 0
+        sButton.setTitle("\(DWGlassSizes.s.convert(to: unit)) \(unitString)")
         sButton.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
+        configureButtonUnselected(button: sButton)
+        
         mButton.tag = 1
+        mButton.setTitle("\(DWGlassSizes.m.convert(to: unit)) \(unitString)")
         mButton.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
+        configureButtonUnselected(button: mButton)
+        
         lButton.tag = 2
+        lButton.setTitle("\(DWGlassSizes.l.convert(to: unit)) \(unitString)")
         lButton.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
+        configureButtonUnselected(button: lButton)
+        
         xlButton.tag = 3
+        xlButton.setTitle("\(DWGlassSizes.xl.convert(to: unit)) \(unitString)")
         xlButton.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
+        configureButtonUnselected(button: xlButton)
+        
         xxlButton.tag = 4
+        xxlButton.setTitle("\(DWGlassSizes.xxl.convert(to: unit)) \(unitString)")
         xxlButton.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
+        configureButtonUnselected(button: xxlButton)
+        
+        for s in user.preferredDrinkSize.prefArray {
+            switch s {
+            case .s:
+                configureButtonSelected(button: sButton)
+            case .m:
+                configureButtonSelected(button: mButton)
+            case .l:
+                configureButtonSelected(button: lButton)
+            case .xl:
+                configureButtonSelected(button: xlButton)
+            case .xxl:
+                configureButtonSelected(button: xxlButton)
+            }
+       }
     }
     
     
+    func configureButtonSelected(button: DWButton) {
+        button.set(textColor: DWColors.whiteColor)
+        button.backgroundColor = UIColor(cgColor: DWColors.greenColor)
+    }
+    
+    
+    func configureButtonUnselected(button: DWButton) {
+        button.set(textColor: DWColors.grayColor)
+        button.backgroundColor = .white
+    }
     
     @objc func buttonTapped(sender: DWButton) {
         let size: DWGlassSizes
@@ -82,17 +138,16 @@ class DWGlassSizeItemVC: UIViewController {
             size = .s
         }
         
-        if selectedGlassSizes.contains(size) { // s is already selected
+        if user.preferredDrinkSize.prefArray.contains(size) { // s is already selected
             sender.set(textColor: DWColors.grayColor)
             sender.backgroundColor = .white
-            selectedGlassSizes.firstIndex(of: size).map { selectedGlassSizes.remove(at: $0) }
+            user.preferredDrinkSize.prefArray.firstIndex(of: size).map { selectedGlassSizes.remove(at: $0) }
             print(selectedGlassSizes)
         } else {
             if selectedGlassSizes.count < 3 { // else already 3 buttons selected
                 sender.set(textColor: DWColors.whiteColor)
                 sender.backgroundColor = UIColor(cgColor: DWColors.greenColor)
-                selectedGlassSizes.append(size)
-                print(selectedGlassSizes)
+                user.preferredDrinkSize.prefArray.append(size)
             }
         }
     }

@@ -72,8 +72,9 @@ class DWAgeItemVC: UIViewController {
             ageLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
             ageLabel.heightAnchor.constraint(equalToConstant: 20),
             
-            agePicker.topAnchor.constraint(equalTo: ageLabel.bottomAnchor, constant: 0),
+         //   agePicker.topAnchor.constraint(equalTo: ageLabel.bottomAnchor, constant: 0),
             agePicker.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            agePicker.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             agePicker.widthAnchor.constraint(equalToConstant: view.frame.width/2),
             agePicker.heightAnchor.constraint(equalToConstant: 80)
             

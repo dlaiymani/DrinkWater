@@ -43,6 +43,7 @@
 		AAA5A9592460495C001237D0 /* DWColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA5A9582460495C001237D0 /* DWColors.swift */; };
 		AAA5A95B24618E53001237D0 /* Int+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA5A95A24618E53001237D0 /* Int+Ext.swift */; };
 		AAB0197E2489379400D59470 /* DWGlassSizes.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB0197D2489379400D59470 /* DWGlassSizes.swift */; };
+		AAB01980248E539E00D59470 /* PreferedSizes.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB0197F248E539E00D59470 /* PreferedSizes.swift */; };
 		AAB7DF172487DBB600879B2C /* DWUnderlinedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB7DF162487DBB600879B2C /* DWUnderlinedLabel.swift */; };
 		AAC1B56C2462A75E00AF04ED /* DWActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC1B56B2462A75E00AF04ED /* DWActivityView.swift */; };
 		AAC1B56E2462ACCF00AF04ED /* DWDayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC1B56D2462ACCF00AF04ED /* DWDayView.swift */; };
@@ -99,6 +100,7 @@
 		AAA5A9582460495C001237D0 /* DWColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DWColors.swift; sourceTree = "<group>"; };
 		AAA5A95A24618E53001237D0 /* Int+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Ext.swift"; sourceTree = "<group>"; };
 		AAB0197D2489379400D59470 /* DWGlassSizes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DWGlassSizes.swift; sourceTree = "<group>"; };
+		AAB0197F248E539E00D59470 /* PreferedSizes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferedSizes.swift; sourceTree = "<group>"; };
 		AAB7DF162487DBB600879B2C /* DWUnderlinedLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DWUnderlinedLabel.swift; sourceTree = "<group>"; };
 		AAC1B56B2462A75E00AF04ED /* DWActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DWActivityView.swift; sourceTree = "<group>"; };
 		AAC1B56D2462ACCF00AF04ED /* DWDayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DWDayView.swift; sourceTree = "<group>"; };
@@ -256,6 +258,7 @@
 			children = (
 				AACFDF8C246BB714007299CD /* DayDrink.swift */,
 				AAF4BFA42475533F00185F04 /* User.swift */,
+				AAB0197F248E539E00D59470 /* PreferedSizes.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -428,6 +431,7 @@
 				AAF4BFB02476B61300185F04 /* DWSexItemVC.swift in Sources */,
 				AA455584247D638700C5B8EC /* DateVC.swift in Sources */,
 				AA46366F24574072002CFFC0 /* DWBodyLabel.swift in Sources */,
+				AAB01980248E539E00D59470 /* PreferedSizes.swift in Sources */,
 				AA6B4252247CF013008187E3 /* WeekActivityVC.swift in Sources */,
 				AA46364E2456B5D1002CFFC0 /* AppDelegate.swift in Sources */,
 				AA46367424574516002CFFC0 /* String+Ext.swift in Sources */,

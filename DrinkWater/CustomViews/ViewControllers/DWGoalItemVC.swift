@@ -20,11 +20,22 @@ class DWGoalItemVC: UIViewController {
     var goal = 1200.0
     var user: User!
     private let buttonsSize: CGFloat = 25
+    var units: DWUnits = .cl
+    var unitsString = "cl"
+    
+    var segmentedCtrl: UISegmentedControl!
+
     
     init(profile: User) {
         super.init(nibName: nil, bundle: nil)
         user = profile
         goal = user.dailyGoal
+        units = user.units
+        if units == .cl {
+            unitsString = "cl"
+        } else {
+            unitsString = "oz"
+        }
     }
     
     required init?(coder: NSCoder) {
@@ -34,19 +45,31 @@ class DWGoalItemVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureBackgroundView()
-        configureButtons()
         configureGoalLabel()
+        configureButtons()
+
         layoutUI()
         configureStackView()
-
     }
     
+    
+    override func viewWillAppear(_ animated: Bool) {
+        configureSegmentedControl()
+        
+    }
     
     private func configureBackgroundView() {
         view.layer.cornerRadius = 18
         view.backgroundColor = UIColor(cgColor: DWColors.lightBlackColor)
     }
     
+    func configureSegmentedControl() {
+        if units == .cl {
+            segmentedCtrl.selectedSegmentIndex = 0
+        } else {
+            segmentedCtrl.selectedSegmentIndex = 1
+        }
+    }
     
     private func configureButtons() {
         plusButton.set(textColor: DWColors.blackColor)
@@ -57,26 +80,58 @@ class DWGoalItemVC: UIViewController {
         
         plusButton.addTarget(self, action: #selector(plusButtonTapped), for: .touchUpInside)
         minusButton.addTarget(self, action: #selector(minusButtonTapped), for: .touchUpInside)
+        
+        let items = ["cl", "oz"]
+        segmentedCtrl = UISegmentedControl(items: items)
+        
+        
+        segmentedCtrl.layer.cornerRadius = 40.0
+        segmentedCtrl.backgroundColor = UIColor.white
+        segmentedCtrl.tintColor = UIColor(cgColor: DWColors.greenColor)
+        segmentedCtrl.selectedSegmentTintColor = UIColor(cgColor: DWColors.greenColor)
+        UISegmentedControl.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], for: .selected)
+
+        segmentedCtrl.addTarget(self, action: #selector(self.changeUnits), for: .valueChanged)
     }
     
     
+    @objc func changeUnits() {
+        print(segmentedCtrl.selectedSegmentIndex)
+        if segmentedCtrl.selectedSegmentIndex == 0 {
+            if units == .oz {
+                goal = goal * 3.0
+            }
+            units = .cl
+            unitsString = "cl"
+
+        } else {
+            if units == .cl {
+                goal = goal * 0.3333333333333
+            }
+            units = .oz
+            unitsString = "oz"
+        }
+        
+        goalLabel.text = "\(String(format: "%.2f", goal)) \(unitsString)"
+    }
+    
     @objc private func plusButtonTapped() {
         goal += 10
-        goalLabel.text = "\(goal) cl"
+        goalLabel.text = "\(String(format: "%.2f", goal)) \(unitsString)"
         
     }
     
     
     @objc private func minusButtonTapped() {
         goal -= 10
-        goalLabel.text = "\(goal) cl"
+        goalLabel.text = "\(String(format: "%.2f", goal)) \(unitsString)"
 
     }
     
     
     private func configureGoalLabel() {
         
-        goalLabel.text = "\(goal) cl"
+        goalLabel.text = "\(String(format: "%.2f", goal)) \(unitsString)"
 
     }
     
@@ -85,6 +140,15 @@ class DWGoalItemVC: UIViewController {
         view.addSubview(goalTitleLabel)
        // view.addSubview(plusButton)
         view.addSubview(stackView)
+        
+        view.addSubview(segmentedCtrl)
+        segmentedCtrl.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            segmentedCtrl.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            segmentedCtrl.widthAnchor.constraint(equalToConstant: 100),
+            segmentedCtrl.heightAnchor.constraint(equalToConstant: 25)
+        ])
 
         goalTitleLabel.text = "🎯 Daily goal"
         
@@ -101,6 +165,22 @@ class DWGoalItemVC: UIViewController {
             stackView.widthAnchor.constraint(equalToConstant: 140),
             stackView.heightAnchor.constraint(equalToConstant: 25),
         ])
+        
+        
+        let space1 = UILayoutGuide()
+        self.view.addLayoutGuide(space1)
+         
+        let space2 = UILayoutGuide()
+        self.view.addLayoutGuide(space2)
+
+        space1.heightAnchor.constraint(equalTo: space2.heightAnchor).isActive = true
+        stackView.bottomAnchor.constraint(equalTo: space1.topAnchor).isActive = true
+        segmentedCtrl.topAnchor.constraint(equalTo: space1.bottomAnchor).isActive = true
+        segmentedCtrl.bottomAnchor.constraint(equalTo: space2.topAnchor).isActive = true
+        space2.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0).isActive = true
+        
+        segmentedCtrl.layoutIfNeeded()
+        
     }
     
     

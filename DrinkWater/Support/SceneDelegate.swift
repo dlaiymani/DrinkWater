@@ -23,7 +23,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.windowScene = windowScene
         
         let alwaysFirstLaunch = FirstLaunch.alwaysFirst()
-        if alwaysFirstLaunch.isFirstLaunch {
+        if !alwaysFirstLaunch.isFirstLaunch {
             window?.rootViewController = createOnBoardingVC()
             window?.makeKeyAndVisible()
         } else {

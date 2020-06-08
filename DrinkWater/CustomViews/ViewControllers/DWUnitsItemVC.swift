@@ -17,9 +17,13 @@ class DWUnitsItemVC: UIViewController {
     
     var unit: DWUnits = .cl
     
+    var user: User!
     
-    init() {
+    
+    init(profile: User) {
         super.init(nibName: nil, bundle: nil)
+        self.user = profile
+        self.unit = profile.units
     }
     
     required init?(coder: NSCoder) {
@@ -41,7 +45,14 @@ class DWUnitsItemVC: UIViewController {
     }
     
     private func configureSexButtons() {
-        ozButton.set(textColor: DWColors.grayColor)
+        
+        if unit == .oz {
+            ozTapped()
+        } else {
+            clTapped()
+        }
+        
+     //   ozButton.set(textColor: DWColors.grayColor)
         ozButton.addTarget(self, action: #selector(ozTapped), for: .touchUpInside)
         clButton.addTarget(self, action: #selector(clTapped), for: .touchUpInside)
     }

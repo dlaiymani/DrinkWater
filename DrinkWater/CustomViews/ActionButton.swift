@@ -43,7 +43,8 @@ open class ActionButton: NSObject {
     open var backgroundColorSelected: UIColor = UIColor(red: 238.0/255.0, green: 130.0/255.0, blue: 34.0/255.0, alpha:1.0)
     
     /// Indicates if the buttons is active (showing its items)
-    fileprivate(set) open var active: Bool = false
+    //fileprivate(set) open var active: Bool = false
+    var active: Bool = false
     
     /// An array of items that the button will present
     internal var items: [ActionButtonItem]? {

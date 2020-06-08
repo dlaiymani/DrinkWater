@@ -25,6 +25,10 @@ class DWWeightItemVC: UIViewController {
         return weights
     }()
     
+    lazy var pickerUnits: [String] = {
+        return ["kg", "lb"]
+    }()
+    
     
     init(profile: User) {
         super.init(nibName: nil, bundle: nil)
@@ -54,6 +58,8 @@ class DWWeightItemVC: UIViewController {
         weightPicker.delegate = self
         weightPicker.dataSource = self
         weightPicker.selectRow(Int(weight), inComponent: 0, animated: false)
+        weightPicker.selectRow(0, inComponent: 1, animated: false)
+
 
     }
     
@@ -61,7 +67,7 @@ class DWWeightItemVC: UIViewController {
     private func layoutUI() {
         view.addSubview(weightLabel)
         view.addSubview(weightPicker)
-        view.addSubview(unitLabel)
+       // view.addSubview(unitLabel)
 
         weightLabel.text = "⏲ Weight"
         unitLabel.text = "kg"
@@ -74,14 +80,15 @@ class DWWeightItemVC: UIViewController {
             weightLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
             weightLabel.heightAnchor.constraint(equalToConstant: 20),
             
-            weightPicker.topAnchor.constraint(equalTo: weightLabel.bottomAnchor, constant: 0),
+           // weightPicker.topAnchor.constraint(equalTo: weightLabel.bottomAnchor, constant: 0),
             weightPicker.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            weightPicker.widthAnchor.constraint(equalToConstant: 80),
+            weightPicker.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            weightPicker.widthAnchor.constraint(equalToConstant: 100),
             weightPicker.heightAnchor.constraint(equalToConstant: 80),
             
-            unitLabel.centerYAnchor.constraint(equalTo: weightPicker.centerYAnchor),
-            unitLabel.leadingAnchor.constraint(equalTo: weightPicker.trailingAnchor, constant: 0),
-            unitLabel.heightAnchor.constraint(equalToConstant: 20),
+//            unitLabel.centerYAnchor.constraint(equalTo: weightPicker.centerYAnchor),
+//            unitLabel.leadingAnchor.constraint(equalTo: weightPicker.trailingAnchor, constant: 0),
+//            unitLabel.heightAnchor.constraint(equalToConstant: 20),
 
         ])
     }
@@ -89,15 +96,23 @@ class DWWeightItemVC: UIViewController {
 
 extension DWWeightItemVC: UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        1
+        2
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        pickerData.count
+        if component == 0 {
+            return pickerData.count
+        } else {
+            return pickerUnits.count
+        }
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return String(pickerData[row])
+        if component == 0 {
+            return String(pickerData[row])
+        } else {
+            return pickerUnits[row]
+        }
     }
     
     
@@ -108,7 +123,12 @@ extension DWWeightItemVC: UIPickerViewDelegate {
     
     func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
         let color = (row == pickerView.selectedRow(inComponent: component)) ? UIColor(cgColor: DWColors.greenColor) : UIColor.white
-        return NSAttributedString(string: String(self.pickerData[row]), attributes: [NSAttributedString.Key.foregroundColor: color])
+        if component == 0 {
+            return NSAttributedString(string: String(self.pickerData[row]), attributes: [NSAttributedString.Key.foregroundColor: color])
+        } else {
+            return NSAttributedString(string: String(self.pickerUnits[row]), attributes: [NSAttributedString.Key.foregroundColor: color])
+        }
+        
     }
 
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {

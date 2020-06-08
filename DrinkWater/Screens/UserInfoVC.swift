@@ -41,7 +41,11 @@ class UserInfoVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        getExistingProfile()
+        if !onBoarding {
+            getExistingProfile()
+        } else {
+            self.user = User(yob: 1980, weight: 70, sex: "F", preferredDrinkSize: PreferedSizes(prefArray: [.s, .m, .xl]), dailyGoal: 1200, units: .cl, nbOfNotifs: 3)
+        }
 
         configureViewController()
         layoutUI()
@@ -149,8 +153,8 @@ class UserInfoVC: UIViewController {
     
     
     @objc func saveProfile() {
-        
-        user = User(yob: ageItemVC.yob, weight: Double(weightItemVC.weight), sex: sexItemVC.sex, preferredDrinkSize: [12, 50, 100], dailyGoal: Double(goalItemVC.goal), units: .cl, nbOfNotifs: 3)
+                
+        user = User(yob: ageItemVC.yob, weight: Double(weightItemVC.weight), sex: sexItemVC.sex, preferredDrinkSize: user!.preferredDrinkSize, dailyGoal: Double(goalItemVC.goal), units: goalItemVC.units, nbOfNotifs: user!.nbOfNotifs)
         
         PersistenceManager.updateWith(profile: user!) { [weak self] (error) in
             guard let self = self else { return }

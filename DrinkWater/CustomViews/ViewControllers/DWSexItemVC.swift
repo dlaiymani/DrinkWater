@@ -88,8 +88,9 @@ class DWSexItemVC: UIViewController {
             sexLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
             sexLabel.heightAnchor.constraint(equalToConstant: 30),
             
-            stackView.topAnchor.constraint(equalTo: sexLabel.bottomAnchor, constant: padding),
+          //  stackView.topAnchor.constraint(equalTo: sexLabel.bottomAnchor, constant: padding),
             stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             stackView.widthAnchor.constraint(equalToConstant: view.frame.width/3),
             stackView.heightAnchor.constraint(equalToConstant: 30)
             

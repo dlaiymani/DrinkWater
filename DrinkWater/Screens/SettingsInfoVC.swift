@@ -32,9 +32,16 @@ class SettingsInfoVC: UIViewController {
     
     var onBoarding = false
     
+    var user: User!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        if !onBoarding {
+            getExistingProfile()
+        } else {
+            self.user = User(yob: 1980, weight: 70, sex: "F", preferredDrinkSize: PreferedSizes(prefArray: [.s, .m, .xl]), dailyGoal: 1200, units: .cl, nbOfNotifs: 3)
+        }
         configureViewController()
         layoutUI()
         configureUIElements()
@@ -42,9 +49,20 @@ class SettingsInfoVC: UIViewController {
     }
     
     
+    func getExistingProfile() {
+            PersistenceManager.retreiveProfile { (result) in
+                switch result {
+                case .success(let profile):
+                    self.user = profile
+                case .failure(let error):
+                    print(error)
+                }
+            }
+    }
+    
     func configureViewController() {
         view.backgroundColor = .black
-        let doneButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(dismissVC))
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveProfile))
         let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(dismissVC))
         navigationItem.rightBarButtonItem = doneButton
         navigationItem.leftBarButtonItem = cancelButton
@@ -58,11 +76,11 @@ class SettingsInfoVC: UIViewController {
     
     func configureUIElements() {
         
-        unitsItemVC = DWUnitsItemVC()
+        unitsItemVC = DWUnitsItemVC(profile: user)
         self.add(childVC: unitsItemVC, to: self.itemViewUnits)
-        notifsItemVC = DWNotifsItemVC()
+        notifsItemVC = DWNotifsItemVC(profile: user)
         self.add(childVC: notifsItemVC, to: self.itemViewNotifications)
-        glassSizeItemVC = DWGlassSizeItemVC()
+        glassSizeItemVC = DWGlassSizeItemVC(profile: user)
         self.add(childVC: glassSizeItemVC, to: self.itemViewGlassSizes)
        
     }
@@ -125,6 +143,22 @@ class SettingsInfoVC: UIViewController {
         dismiss(animated: true)
     }
     
+    
+    
+    @objc func saveProfile() {
+        
+        let glassSizes = glassSizeItemVC.user.preferredDrinkSize
+        
+        user = User(yob: user.yob , weight: Double(user.weight), sex: user.sex, preferredDrinkSize: glassSizes, dailyGoal: Double(user.dailyGoal), units: unitsItemVC.unit, nbOfNotifs: notifsItemVC.nbNotifs)
+        
+        PersistenceManager.updateWith(profile: user) { [weak self] (error) in
+            guard let self = self else { return }
+            guard let error = error else { return }
+            print(error.rawValue)
+        }
+        
+        dismiss(animated: true)
+    }
 }
 
 

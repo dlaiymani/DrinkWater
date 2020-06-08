@@ -62,7 +62,7 @@ class OnBoardingVC: UIViewController, UIPageViewControllerDataSource, UIPageView
     
     func saveProfile() {
         
-        let glassSizes = settingsVC.glassSizeItemVC.selectedGlassSizes.map { $0.rawValue }
+        let glassSizes = settingsVC.user.preferredDrinkSize
         
         let user = User(yob: profileVC.ageItemVC.yob, weight: Double(profileVC.weightItemVC.weight), sex: profileVC.sexItemVC.sex, preferredDrinkSize: glassSizes, dailyGoal: Double(profileVC.goalItemVC.goal), units: settingsVC.unitsItemVC.unit, nbOfNotifs: settingsVC.notifsItemVC.nbNotifs)
         
