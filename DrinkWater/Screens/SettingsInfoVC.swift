@@ -149,6 +149,13 @@ class SettingsInfoVC: UIViewController {
         
         let glassSizes = glassSizeItemVC.user.preferredDrinkSize
         
+        guard !glassSizes.prefArray.isEmpty  else {
+            //presentDWAlertOnMainThread(title: "No Prefered Glass Size Selected", message: "Please select one at least", buttonTitle: "OK")
+            let alertVC = DWAlertVC(title: "No Glass Size Selected", message: "Please select one at least", buttonTitle: "OK")
+            present(alertVC, animated: true, completion: nil)
+            return
+        }
+        
         user = User(yob: user.yob , weight: Double(user.weight), sex: user.sex, preferredDrinkSize: glassSizes, dailyGoal: Double(user.dailyGoal), units: unitsItemVC.unit, nbOfNotifs: notifsItemVC.nbNotifs)
         
         PersistenceManager.updateWith(profile: user) { [weak self] (error) in

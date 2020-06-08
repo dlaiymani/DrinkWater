@@ -141,10 +141,9 @@ class DWGlassSizeItemVC: UIViewController {
         if user.preferredDrinkSize.prefArray.contains(size) { // s is already selected
             sender.set(textColor: DWColors.grayColor)
             sender.backgroundColor = .white
-            user.preferredDrinkSize.prefArray.firstIndex(of: size).map { selectedGlassSizes.remove(at: $0) }
-            print(selectedGlassSizes)
+            user.preferredDrinkSize.prefArray.firstIndex(of: size).map { user.preferredDrinkSize.prefArray.remove(at: $0) }
         } else {
-            if selectedGlassSizes.count < 3 { // else already 3 buttons selected
+            if user.preferredDrinkSize.prefArray.count < 3 { // else already 3 buttons selected
                 sender.set(textColor: DWColors.whiteColor)
                 sender.backgroundColor = UIColor(cgColor: DWColors.greenColor)
                 user.preferredDrinkSize.prefArray.append(size)

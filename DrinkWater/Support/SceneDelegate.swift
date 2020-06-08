@@ -12,6 +12,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
 
+    var navigationController: UINavigationController?
+
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
@@ -24,13 +26,24 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let alwaysFirstLaunch = FirstLaunch.alwaysFirst()
         if !alwaysFirstLaunch.isFirstLaunch {
-            window?.rootViewController = createOnBoardingVC()
+            let onBoardingVC = createOnBoardingVC()
+            
+            navigationController = UINavigationController(rootViewController: onBoardingVC)
+            navigationController!.navigationBar.barTintColor = .black
+            window?.rootViewController = navigationController
             window?.makeKeyAndVisible()
+           // window?.rootViewController = onBoardingVC
+            //window?.makeKeyAndVisible()
         } else {
-            window?.rootViewController = createNavVC()
+            let mainVC = DrinkVC()
+            navigationController = UINavigationController(rootViewController: mainVC)
+            navigationController!.navigationBar.barTintColor = .black
+            window?.rootViewController = navigationController
             window?.makeKeyAndVisible()
         }
     }
+    
+    
     
     
     func createOnBoardingVC() -> UIViewController {

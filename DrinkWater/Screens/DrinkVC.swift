@@ -33,10 +33,24 @@ class DrinkVC: UIViewController {
     var upSwipe: UISwipeGestureRecognizer!
     
     var user: User!
+    
+    var userNavController: UINavigationController!
+    var settingsNavController: UINavigationController!
+    let userInfoVC = UserInfoVC()
+    let settingsInfoVC = SettingsInfoVC()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .black
+        
+        let destVC = UserInfoVC()
+        userNavController = UINavigationController(rootViewController: destVC)
+        userNavController.modalPresentationStyle = .fullScreen
+        
+        let destSetVC = SettingsInfoVC()
+        settingsNavController = UINavigationController(rootViewController: destSetVC)
+        settingsNavController.modalPresentationStyle = .fullScreen
+        
 
       //  getUserProfile()
         configureNavBar()
@@ -63,7 +77,6 @@ class DrinkVC: UIViewController {
             switch result {
             case .success(let existingProfile):
                 guard let existingProfile = existingProfile else {
-                    print("yop")
                     self.user = User(yob: 1980, weight: 70, sex: "F", preferredDrinkSize: PreferedSizes(prefArray: [.s, .m, .xl]), dailyGoal: 1200, units: .cl, nbOfNotifs: 3)
                     return
                 }
@@ -71,8 +84,6 @@ class DrinkVC: UIViewController {
                 self.drinkGoal = existingProfile.dailyGoal
                // self.user.preferredDrinkSize.prefArray.sort()
             case .failure(let error):
-                print("yap")
-
                 print(error.rawValue)
             }
         }
@@ -87,26 +98,29 @@ class DrinkVC: UIViewController {
     
     
     @objc func profileButtonTapped() {
-        let destVC = UserInfoVC()
-        let navController = UINavigationController(rootViewController: destVC)
-        navController.modalPresentationStyle = .fullScreen
+       
         if actionButton.active {
             actionButton!.toggleMenu()
         }
+        
+       // navigationController.
+        
+       // navigationController?.pushViewController(userInfoVC, animated: true)
 
-        present(navController, animated: true)
+        present(userNavController, animated: true)
+        
     }
     
     
     @objc func settingsButtonTapped() {
-        let destVC = SettingsInfoVC()
-        let navController = UINavigationController(rootViewController: destVC)
-        navController.modalPresentationStyle = .fullScreen
+//        let destVC = SettingsInfoVC()
+//        let navController = UINavigationController(rootViewController: destVC)
+//        navController.modalPresentationStyle = .fullScreen
         if actionButton.active {
             actionButton!.toggleMenu()
         }
 
-        present(navController, animated: true)
+        present(settingsNavController, animated: true)
     }
     
     

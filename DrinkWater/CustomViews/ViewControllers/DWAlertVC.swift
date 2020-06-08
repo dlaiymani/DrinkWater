@@ -78,7 +78,7 @@ class DWAlertVC: UIViewController {
     func configureActionButton() {
         containerView.addSubview(actionButton)
         actionButton.setTitle(buttonTitle ?? "Ok", for: .normal)
-     //   actionButton.addTarget(self, action: #selector(dismissVC), for: .touchUpInside)
+        actionButton.addTarget(self, action: #selector(dismissVC), for: .touchUpInside)
         
         NSLayoutConstraint.activate([
             actionButton.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -padding),
@@ -90,7 +90,6 @@ class DWAlertVC: UIViewController {
     }
     
     @objc func dismissVC() {
-        print("yap")
         dismiss(animated: true)
     }
     

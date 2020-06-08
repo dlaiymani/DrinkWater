@@ -14,6 +14,7 @@ class OnBoardingVC: UIViewController, UIPageViewControllerDataSource, UIPageView
     
     let profileVC = UserInfoVC()
     let settingsVC = SettingsInfoVC()
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,14 +49,26 @@ class OnBoardingVC: UIViewController, UIPageViewControllerDataSource, UIPageView
     
     @objc func saveAndStart() {
         saveProfile()
-        dismiss(animated: true, completion: nil)
-        let destVC = DrinkVC()
-        let navController = UINavigationController(rootViewController: destVC)
-        navController.navigationBar.barTintColor = .black
         
-        UIView.transition(from: (UIApplication.shared.windows.first?.rootViewController!.view)!, to: navController.view, duration: 0.6, options: [.transitionFlipFromRight], completion: {
-            _ in            
-        })
+       // dismiss(animated: true, completion: nil)
+        let mainVC = DrinkVC()
+       // let navigationController = UINavigationController(rootViewController: mainVC)
+        self.navigationController?.pushViewController(mainVC, animated: true)
+      //  navigationController.navigationBar.barTintColor = .black
+        
+       // UIApplication.shared.windows.first?.rootViewController! = navigationController
+            // present(navigationController, animated: true, completion: nil)
+//        window?.rootViewController = navigationController
+//        window?.makeKeyAndVisible()
+               
+       // let navController = UINavigationController(rootViewController: destVC)
+      //  self.navigationController?.popToViewController(navController, animated: true)
+
+        //navController.navigationBar.barTintColor = .black
+
+//        UIView.transition(from: (UIApplication.shared.windows.first?.rootViewController!.view)!, to: navigationController.view, duration: 0.6, options: [.transitionFlipFromRight], completion: {
+//            _ in
+//        })
     }
 
     
@@ -71,8 +84,6 @@ class OnBoardingVC: UIViewController, UIPageViewControllerDataSource, UIPageView
             guard let error = error else { return }
             print(error.rawValue)
         }
-        
-        dismiss(animated: true)
     }
     
 
