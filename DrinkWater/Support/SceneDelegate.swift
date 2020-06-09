@@ -27,13 +27,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let alwaysFirstLaunch = FirstLaunch.alwaysFirst()
         if !alwaysFirstLaunch.isFirstLaunch {
             let onBoardingVC = createOnBoardingVC()
-            
             navigationController = UINavigationController(rootViewController: onBoardingVC)
             navigationController!.navigationBar.barTintColor = .black
             window?.rootViewController = navigationController
             window?.makeKeyAndVisible()
-           // window?.rootViewController = onBoardingVC
-            //window?.makeKeyAndVisible()
         } else {
             let mainVC = DrinkVC()
             navigationController = UINavigationController(rootViewController: mainVC)
@@ -42,8 +39,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             window?.makeKeyAndVisible()
         }
     }
-    
-    
     
     
     func createOnBoardingVC() -> UIViewController {
@@ -60,56 +55,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
     }
     
-    func createAlertVC() -> UIViewController {
-        let alertVC = DWAlertVC(title: "Welcome to DrinkWater", message: "Let's get to know each other", buttonTitle: "Next")
-        alertVC.modalPresentationStyle = .overFullScreen
-        alertVC.modalTransitionStyle = .crossDissolve
-        
-        return alertVC
-        
-    }
-    
-    func createNavVC() -> UINavigationController {
-        let drinkVC = DrinkVC()
-        let navVC = UINavigationController(rootViewController: drinkVC)
-        navVC.navigationBar.barTintColor = .black
-    //    navVC.navigationBar.tintColor = .systemBlue
-   //     navVC.title = "toto"
-     //   navVC.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: nil, action: nil)
-        
-        return navVC
-    }
-    
-    func createDrinkViewController() -> UIViewController {
-        let drinkVC = DrinkVC()
-                
-        drinkVC.tabBarItem = UITabBarItem(title: "Drink", image: UIImage(named: "bottle"), tag:0)
-        return drinkVC
-    }
-    
-//    func createStatsViewController() -> UIViewController {
-//        let statsVC = WeekStatsVC()
-//        statsVC.tabBarItem = UITabBarItem(title: "Progress", image: UIImage(systemName: "chart.bar"), tag: 1)
-//        return statsVC
-//    }
-    
-//    func createProfileViewController() -> UIViewController {
-//        let profileVC = ProfileVC()
-//        profileVC.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(systemName: "person"), tag: 2)
-//        
-//        return profileVC
-//    }
-    
-//    func createTabbar() -> UITabBarController {
-//        let drinkVC = createDrinkViewController()
-//        let statsVC = createStatsViewController()
-//        let profileVC = createProfileViewController()
-//        
-//        let tabbar = UITabBarController()
-//        tabbar.viewControllers = [drinkVC, statsVC, profileVC]
-//        
-//        return tabbar
-//    }
 
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.

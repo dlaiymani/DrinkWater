@@ -43,20 +43,10 @@ class DrinkVC: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .black
         
-        let destVC = UserInfoVC()
-        userNavController = UINavigationController(rootViewController: destVC)
-        userNavController.modalPresentationStyle = .fullScreen
-        
-        let destSetVC = SettingsInfoVC()
-        settingsNavController = UINavigationController(rootViewController: destSetVC)
-        settingsNavController.modalPresentationStyle = .fullScreen
-        
-
-      //  getUserProfile()
+        configureVC()
         configureNavBar()
         layoutUI()
         configureUIElements()
-   //     setupButtons()
     }
     
     
@@ -72,6 +62,18 @@ class DrinkVC: UIViewController {
     }
     
     
+    func configureVC() {
+        let destVC = UserInfoVC()
+        userNavController = UINavigationController(rootViewController: destVC)
+        userNavController.modalPresentationStyle = .fullScreen
+        
+        let destSetVC = SettingsInfoVC()
+        settingsNavController = UINavigationController(rootViewController: destSetVC)
+        settingsNavController.modalPresentationStyle = .fullScreen
+    }
+    
+    
+    
     func getUserProfile() {
         PersistenceManager.retreiveProfile { (result) in
             switch result {
@@ -82,7 +84,6 @@ class DrinkVC: UIViewController {
                 }
                 self.user = existingProfile
                 self.drinkGoal = existingProfile.dailyGoal
-               // self.user.preferredDrinkSize.prefArray.sort()
             case .failure(let error):
                 print(error.rawValue)
             }
@@ -102,20 +103,12 @@ class DrinkVC: UIViewController {
         if actionButton.active {
             actionButton!.toggleMenu()
         }
-        
-       // navigationController.
-        
-       // navigationController?.pushViewController(userInfoVC, animated: true)
-
         present(userNavController, animated: true)
-        
     }
     
     
     @objc func settingsButtonTapped() {
-//        let destVC = SettingsInfoVC()
-//        let navController = UINavigationController(rootViewController: destVC)
-//        navController.modalPresentationStyle = .fullScreen
+
         if actionButton.active {
             actionButton!.toggleMenu()
         }
@@ -132,7 +125,6 @@ class DrinkVC: UIViewController {
         self.add(childVC: dateVC, to: self.dateView)
         activityVC = ActivityVC()
         self.add(childVC: activityVC, to: self.activityView)
-
     }
     
     
@@ -208,10 +200,8 @@ class DrinkVC: UIViewController {
     func setupButtons() {
         
         var items = [ActionButtonItem]()
-        actionButton = nil
         
         let prefSizes = user.preferredDrinkSize.convertFrom(unit: user.units)
-        
         
         for s in prefSizes.sorted() {
             let button = ActionButtonItem(title: "\(s)", image: nil)
@@ -222,24 +212,12 @@ class DrinkVC: UIViewController {
             }
         }
         
-//        let little = ActionButtonItem(title: "S", image: nil)
-//        little.action = {item in
-//            self.drunkVolume += 0.15
-//            self.animateCircles()
-//        }
-//        let average = ActionButtonItem(title: "M", image: nil)
-//        average.action = {item in
-//            self.drunkVolume += 0.33
-//            self.animateCircles()
-//        }
-//        let large = ActionButtonItem(title: "L", image: nil)
-//        large.action = {item in
-//            self.drunkVolume += 0.75
-//            self.animateCircles()
-//        }
-        
-       // actionButton = ActionButton(attachedToView: self.view, items: [little, average, large])
-        actionButton = ActionButton(attachedToView: self.view, items: items)
+        if let actionButton = actionButton {
+            actionButton.items = items
+            
+        } else {
+            actionButton = ActionButton(attachedToView: self.view, items: items)
+        }
         
         actionButton.setTitle("+", forState: UIControl.State())
         actionButton.backgroundColor = UIColor(cgColor: DWColors.pastelGreenColor)
@@ -251,6 +229,7 @@ class DrinkVC: UIViewController {
             }
         }
     }
+    
     
     func animateCircles() {
         percentageGoal = (drunkVolume)/drinkGoal
