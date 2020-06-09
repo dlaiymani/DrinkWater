@@ -83,7 +83,10 @@ class DrinkVC: UIViewController {
                     return
                 }
                 self.user = existingProfile
-                self.drinkGoal = existingProfile.dailyGoal
+                if self.drinkGoal != existingProfile.dailyGoal {
+                    self.drinkGoal = existingProfile.dailyGoal
+                    self.animateCircles()
+                }
             case .failure(let error):
                 print(error.rawValue)
             }
@@ -112,7 +115,6 @@ class DrinkVC: UIViewController {
         if actionButton.active {
             actionButton!.toggleMenu()
         }
-
         present(settingsNavController, animated: true)
     }
     
@@ -207,7 +209,12 @@ class DrinkVC: UIViewController {
             let button = ActionButtonItem(title: "\(s)", image: nil)
             items.append(button)
             button.action = {item in
-                self.drunkVolume += Double(s)
+                // always in cl
+                if self.user.units == .oz {
+                    self.drunkVolume += Double(s*3.0)
+                } else {
+                    self.drunkVolume += Double(s)
+                }
                 self.animateCircles()
             }
         }
@@ -232,12 +239,20 @@ class DrinkVC: UIViewController {
     
     
     func animateCircles() {
-        percentageGoal = (drunkVolume)/drinkGoal
-        activityVC.animateCircles(for: percentageGoal)
+        
+        let drunkVolumeInOz = 0.0
+        if user.units == .oz {
+            percentageGoal = Double(drunkVolume*0.3333333333) / drinkGoal
+            //drunkVolumeInOz = Double(drunkVolume*0.3333333333)
+        } else {
+           // self.drunkVolume = drunkVolume
+            percentageGoal = (drunkVolume)/drinkGoal
+        }
+        activityVC.animateCircles(for: percentageGoal, with: drinkGoal, in: user.units)
         if percentageGoal >= 1.0 {
             percentageGoal = 1.0
             actionButton.toggleMenu()
-            activityVC.animateCircles(for: self.percentageGoal)
+            activityVC.animateCircles(for: self.percentageGoal, with: drinkGoal, in: user.units)
             activityVC.animatePulsatingCircle()
         }
         weekActivityVC.updateWeekView(with: percentageGoal)

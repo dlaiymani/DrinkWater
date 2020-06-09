@@ -44,7 +44,7 @@ class UserInfoVC: UIViewController {
         if !onBoarding {
             getExistingProfile()
         } else {
-            self.user = User(yob: 1980, weight: 70, sex: "F", preferredDrinkSize: PreferedSizes(prefArray: [.s, .m, .xl]), dailyGoal: 1200, units: .cl, nbOfNotifs: 3)
+            self.user = User(yob: 1980, weight: 70, sex: "F", preferredDrinkSize: PreferedSizes(prefArray: [.s, .m, .xl]), dailyGoal: 200, units: .cl, nbOfNotifs: 3)
         }
 
         configureViewController()

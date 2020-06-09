@@ -9,7 +9,7 @@
 import Foundation
 
 
-enum DWUnits: Int, Codable {
-    case cl
-    case oz
+enum DWUnits: String, Codable {
+    case cl = "cl"
+    case oz = "oz"
 }

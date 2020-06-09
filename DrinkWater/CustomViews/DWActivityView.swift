@@ -20,11 +20,15 @@ class DWActivityView: UIView {
     var shadowShapelayer = CAShapeLayer()
     
     let activityLabelStackView = UIStackView()
+    let goalAndActivityStackView = UIStackView()
     var activityLevelLabel = DWBoldLabel(textAlignment: .left, fontSize: 15)
     var simpleDescLabel = DWTitleLabel(textAlignment: .center, fontSize: 15)
     var congratLabel = DWBoldLabel(textAlignment: .center, fontSize: 15)
+    var goalLabel = DWTitleLabel(textAlignment: .center, fontSize: 15)
 
     var percentageCompleted = 0.0
+    var goal = 0.0
+    var unit: DWUnits!
    
     var width: CGFloat = 0.0
     var height: CGFloat = 0.0
@@ -174,12 +178,22 @@ class DWActivityView: UIView {
         activityLabelStackView.addArrangedSubview(simpleDescLabel)
         activityLabelStackView.translatesAutoresizingMaskIntoConstraints = false
         
+        self.addSubview(goalAndActivityStackView)
+        goalAndActivityStackView.axis = .vertical
+        goalAndActivityStackView.distribution = .equalSpacing
+        goalAndActivityStackView.addArrangedSubview(activityLabelStackView)
+        goalAndActivityStackView.addArrangedSubview(goalLabel)
+        goalAndActivityStackView.translatesAutoresizingMaskIntoConstraints = false
+
+        
         simpleDescLabel.text = "daily goal"
+        goalLabel.text = ""
         
         NSLayoutConstraint.activate([
-            activityLabelStackView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            activityLabelStackView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-        
+//            activityLabelStackView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+//            activityLabelStackView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+            goalAndActivityStackView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            goalAndActivityStackView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
         ])
     }
     
@@ -189,21 +203,21 @@ class DWActivityView: UIView {
         self.addSubview(congratLabel)
         activityLabelStackView.isHidden = true
         congratLabel.isHidden = false
-       
 
         congratLabel.text = "Congratulations !!"
         
         NSLayoutConstraint.activate([
             congratLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             congratLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-        
         ])
     }
     
     
-    func animateActivityLabel(percentage: Double) {
+    func animateActivityLabel(percentage: Double, goal: Double, unit: DWUnits) {
         endValue = percentage*100
         animationStartDate = Date()
+        self.goal = goal
+        self.unit = unit
 
         let displayLink = CADisplayLink(target: self, selector: #selector(handleUpdate))
         displayLink.add(to: .main, forMode: .default)
@@ -218,10 +232,13 @@ class DWActivityView: UIView {
         
         if elapsedTime > animationDuration {
             self.activityLevelLabel.text = "\(Int(endValue))% "
+            let drinked = goal*endValue/100
+            self.goalLabel.text = "\(String(format: "%.f", goal-drinked)) \(unit.rawValue) left"
         } else {
             let percentage = elapsedTime / animationDuration
             let value = percentage * (endValue - startValue)
             activityLevelLabel.text = "\(Int(value))% "
+
         }
     }
 }

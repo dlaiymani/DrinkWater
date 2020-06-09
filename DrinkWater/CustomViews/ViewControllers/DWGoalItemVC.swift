@@ -17,7 +17,7 @@ class DWGoalItemVC: UIViewController {
     
     let stackView = UIStackView()
     
-    var goal = 1200.0
+    var goal = 200.0
     var user: User!
     private let buttonsSize: CGFloat = 25
     var units: DWUnits = .cl
@@ -96,7 +96,7 @@ class DWGoalItemVC: UIViewController {
     
     
     @objc func changeUnits() {
-        print(segmentedCtrl.selectedSegmentIndex)
+        //print(segmentedCtrl.selectedSegmentIndex)
         if segmentedCtrl.selectedSegmentIndex == 0 {
             if units == .oz {
                 goal = goal * 3.0
@@ -138,7 +138,6 @@ class DWGoalItemVC: UIViewController {
     
     private func layoutUI() {
         view.addSubview(goalTitleLabel)
-       // view.addSubview(plusButton)
         view.addSubview(stackView)
         
         view.addSubview(segmentedCtrl)

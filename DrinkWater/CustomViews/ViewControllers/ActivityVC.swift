@@ -16,9 +16,11 @@ class ActivityVC: UIViewController {
     var height: CGFloat = 0.0
     
     var percentageCompleted: Double = 0.0
+    var goal: Double = 0.0
     
     init() {
         super.init(nibName: nil, bundle: nil)
+        
     }
     
     
@@ -56,16 +58,15 @@ class ActivityVC: UIViewController {
     }
     
     
-    func animateCircles(for percentageGoal: Double) {
+    func animateCircles(for percentageGoal: Double, with goal: Double, in unit: DWUnits ) {
 //        if percentageGoal >= 1.0 {
 //            percentageGoal = 1.0
 //            goalCompleted = true
 //            self.actionButton.disableActionButton()
         //    self.activityView.animatePusaltingCircle()
        // }
-        activityView.animateActivityLabel(percentage: percentageGoal)
+        activityView.animateActivityLabel(percentage: percentageGoal, goal: goal, unit: unit)
         activityView.updateActivityCircle(percentage: percentageGoal)
-       // updateWeekView()
     }
 
     
