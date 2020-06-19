@@ -51,10 +51,8 @@ class DWNotifsItemVC: UIViewController {
         UNUserNotificationCenter.current().getNotificationSettings { (settings) in
             switch settings.authorizationStatus {
             case .authorized:
-                print(true)
                 self.notifStatus = true
             default:
-                print(false)
                 self.notifStatus = false
                 self.nbNotifs = 0
                 DispatchQueue.main.async {

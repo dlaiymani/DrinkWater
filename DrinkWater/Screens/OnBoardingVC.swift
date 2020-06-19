@@ -70,6 +70,8 @@ class OnBoardingVC: UIViewController, UIPageViewControllerDataSource, UIPageView
         
         let user = User(yob: profileVC.ageItemVC.yob, weight: Double(profileVC.weightItemVC.weight), sex: profileVC.sexItemVC.sex, preferredDrinkSize: glassSizes, dailyGoal: Double(profileVC.goalItemVC.goal), units: settingsVC.unitsItemVC.unit, nbOfNotifs: settingsVC.notifsItemVC.nbNotifs)
         
+        scheduleLocalNotification()
+        
         PersistenceManager.updateWith(profile: user) { [weak self] (error) in
             guard let self = self else { return }
             guard let error = error else { return }
@@ -77,6 +79,41 @@ class OnBoardingVC: UIViewController, UIPageViewControllerDataSource, UIPageView
         }
     }
     
+    
+    func scheduleLocalNotification() {
+        let center = UNUserNotificationCenter.current()
+        center.removeAllPendingNotificationRequests()
+        
+        let content = UNMutableNotificationContent()
+        content.title = "Remember to hydrate"
+        content.body = ""
+        content.sound = UNNotificationSound.default
+        
+        var scheduleHours = [(Int, Int)]()
+
+        switch settingsVC.notifsItemVC.nbNotifs {
+        case 2:
+            scheduleHours = [(12, 0), (18, 0)]
+        case 3:
+            scheduleHours = [(9, 0), (12, 0), (18, 0)]
+        case 5:
+            scheduleHours = [(9, 0), (10, 30), (12, 0), (15, 30), (18, 0)]
+        default:
+            break
+        }
+        
+        for hour in scheduleHours {
+            var dateComponents = DateComponents()
+            dateComponents.hour = hour.0
+            dateComponents.minute = hour.1
+            let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
+
+
+            let request = UNNotificationRequest.init(identifier: UUID().uuidString, content: content, trigger: trigger)
+            
+            center.add(request)
+        }
+    }
 
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {

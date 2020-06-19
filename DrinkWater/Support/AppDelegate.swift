@@ -32,6 +32,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             }
         }
     }
+    
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        completionHandler(UNNotificationPresentationOptions.init(arrayLiteral: [.alert, .sound]))
+    }
 
     // MARK: UISceneSession Lifecycle
 
