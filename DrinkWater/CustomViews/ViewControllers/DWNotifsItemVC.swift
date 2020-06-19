@@ -37,7 +37,8 @@ class DWNotifsItemVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(checkNotificationStatus), name: UIApplication.didBecomeActiveNotification, object: nil)
-        
+        checkNotificationStatus()
+       // print(notifStatus)
         configureBackgroundView()
         configureButtons()
         configureGoalLabel()
@@ -50,8 +51,10 @@ class DWNotifsItemVC: UIViewController {
         UNUserNotificationCenter.current().getNotificationSettings { (settings) in
             switch settings.authorizationStatus {
             case .authorized:
+                print(true)
                 self.notifStatus = true
             default:
+                print(false)
                 self.notifStatus = false
                 self.nbNotifs = 0
                 DispatchQueue.main.async {
@@ -75,9 +78,9 @@ class DWNotifsItemVC: UIViewController {
         plusButton.set(cornerRadius: buttonsSize/2)
         minusButton.set(cornerRadius: buttonsSize/2)
         
-        if !notifStatus {
-            nbNotifs = 0
-        }
+//        if !notifStatus {
+//            nbNotifs = 0
+//        }
         
         plusButton.addTarget(self, action: #selector(plusButtonTapped), for: .touchUpInside)
         minusButton.addTarget(self, action: #selector(minusButtonTapped), for: .touchUpInside)
@@ -88,7 +91,7 @@ class DWNotifsItemVC: UIViewController {
     @objc private func plusButtonTapped() {
         
         guard notifStatus else {
-            presentDWAlertOnMainThread(title: "Notifications are not allowed", message: "Please go  to Settings to change it", buttonTitle: "OK")
+            presentDWAlertOnMainThread(title: "Notifications not allowed", message: "Please go  to Settings to change it", buttonTitle: "OK")
             return
         }
         

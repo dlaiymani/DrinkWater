@@ -25,7 +25,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.windowScene = windowScene
         
         let alwaysFirstLaunch = FirstLaunch.alwaysFirst()
-        if !alwaysFirstLaunch.isFirstLaunch {
+        if alwaysFirstLaunch.isFirstLaunch {
             let onBoardingVC = createOnBoardingVC()
             navigationController = UINavigationController(rootViewController: onBoardingVC)
             navigationController!.navigationBar.barTintColor = .black

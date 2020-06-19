@@ -67,9 +67,6 @@ class OnBoardingVC: UIViewController, UIPageViewControllerDataSource, UIPageView
         
         let glassSizes = settingsVC.user.preferredDrinkSize
         
-        if settingsVC.notifsItemVC.nbNotifs > 0 {
-         //   requestAuthForLocalNotifications()
-        }
         
         let user = User(yob: profileVC.ageItemVC.yob, weight: Double(profileVC.weightItemVC.weight), sex: profileVC.sexItemVC.sex, preferredDrinkSize: glassSizes, dailyGoal: Double(profileVC.goalItemVC.goal), units: settingsVC.unitsItemVC.unit, nbOfNotifs: settingsVC.notifsItemVC.nbNotifs)
         
@@ -80,15 +77,6 @@ class OnBoardingVC: UIViewController, UIPageViewControllerDataSource, UIPageView
         }
     }
     
-    
-    func requestAuthForLocalNotifications() {
-        notifCenter.delegate = self
-        notifCenter.requestAuthorization(options: [.alert, .sound]) { (granted, error) in
-            if error != nil {
-                // Something went wrong
-            }
-        }
-    }
 
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
