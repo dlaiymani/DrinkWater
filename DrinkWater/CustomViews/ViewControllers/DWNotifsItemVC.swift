@@ -20,6 +20,7 @@ class DWNotifsItemVC: UIViewController {
     private let buttonsSize: CGFloat = 25
     
     var nbNotifs = 3
+    var notifStatus = false
     
     var user: User!
     
@@ -35,12 +36,29 @@ class DWNotifsItemVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        NotificationCenter.default.addObserver(self, selector: #selector(checkNotificationStatus), name: UIApplication.didBecomeActiveNotification, object: nil)
+        
         configureBackgroundView()
         configureButtons()
         configureGoalLabel()
         layoutUI()
         configureStackView()
-
+    }
+    
+    
+    @objc private func checkNotificationStatus() {
+        UNUserNotificationCenter.current().getNotificationSettings { (settings) in
+            switch settings.authorizationStatus {
+            case .authorized:
+                self.notifStatus = true
+            default:
+                self.notifStatus = false
+                self.nbNotifs = 0
+                DispatchQueue.main.async {
+                    self.configureGoalLabel()
+                }
+            }
+        }
     }
     
     
@@ -57,6 +75,10 @@ class DWNotifsItemVC: UIViewController {
         plusButton.set(cornerRadius: buttonsSize/2)
         minusButton.set(cornerRadius: buttonsSize/2)
         
+        if !notifStatus {
+            nbNotifs = 0
+        }
+        
         plusButton.addTarget(self, action: #selector(plusButtonTapped), for: .touchUpInside)
         minusButton.addTarget(self, action: #selector(minusButtonTapped), for: .touchUpInside)
     }
@@ -64,6 +86,12 @@ class DWNotifsItemVC: UIViewController {
     
     
     @objc private func plusButtonTapped() {
+        
+        guard notifStatus else {
+            presentDWAlertOnMainThread(title: "Notifications are not allowed", message: "Please go  to Settings to change it", buttonTitle: "OK")
+            return
+        }
+        
         switch nbNotifs {
         case 0:
             nbNotifs = 2
@@ -82,6 +110,11 @@ class DWNotifsItemVC: UIViewController {
     
     
     @objc private func minusButtonTapped() {
+        guard notifStatus else {
+            presentDWAlertOnMainThread(title: "Notifications are not allowed", message: "Please go  to Settings to change it", buttonTitle: "OK")
+            return
+        }
+        
         switch nbNotifs {
         case 0:
             nbNotifs = 0

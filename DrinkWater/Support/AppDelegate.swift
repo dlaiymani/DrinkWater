@@ -9,12 +9,28 @@
 import UIKit
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
+    
+    let notifCenter = UNUserNotificationCenter.current()
+
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
+        requestAuthForLocalNotifications()
+
+        
         return true
+    }
+    
+    
+    func requestAuthForLocalNotifications() {
+        notifCenter.delegate = self
+        notifCenter.requestAuthorization(options: [.alert, .sound]) { (granted, error) in
+            if error != nil {
+                // Something went wrong
+            }
+        }
     }
 
     // MARK: UISceneSession Lifecycle
